@@ -1,0 +1,29 @@
+# Ambiente virtual
+.venv/
+
+# Variáveis e credenciais
+.env
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dados locais e sensíveis
+data/raw/
+data/private/
+data/mappings/
+
+# Neo4j local
+neo4j/import/private/
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
