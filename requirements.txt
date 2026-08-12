@@ -1,0 +1,8 @@
+pandas
+requests
+rapidfuzz
+neo4j
+scikit-learn
+faker
+python-dotenv
+matplotlib
