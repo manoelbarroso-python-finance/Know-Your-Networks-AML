@@ -78,7 +78,7 @@ O fluxo principal do projeto será:
        evidências | sinais | limitações |
                 necessidade de revisão
 
-## 19. Camada experimental de GraphRAG e geração assistida por LLM
+## Camada experimental de GraphRAG e geração assistida por LLM
 
 Uma extensão prevista para as etapas finais do projeto será avaliar o uso de Graph Retrieval-Augmented Generation (GraphRAG).
 

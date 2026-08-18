@@ -27,3 +27,5 @@ neo4j/import/private/
 .DS_Store
 Thumbs.db
 .vscode/
+# Dados processados com identidades reais
+data/processed/private/
