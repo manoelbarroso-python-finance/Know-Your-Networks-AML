@@ -1,0 +1,16 @@
+tipo_entidade,atributo,entidades_com_informacao,total_entidades,cobertura_pct
+Entity,data_nascimento,0,9854,0.0
+Entity,local_nascimento,0,9854,0.0
+Entity,nacionalidade,0,9854,0.0
+Entity,cidadania,0,9854,0.0
+Entity,genero,0,9854,0.0
+Individual,data_nascimento,7378,7479,98.65
+Individual,local_nascimento,4758,7479,63.62
+Individual,nacionalidade,5571,7479,74.49
+Individual,cidadania,1045,7479,13.97
+Individual,genero,1,7479,0.01
+Transport,data_nascimento,0,1866,0.0
+Transport,local_nascimento,0,1866,0.0
+Transport,nacionalidade,0,1866,0.0
+Transport,cidadania,0,1866,0.0
+Transport,genero,0,1866,0.0

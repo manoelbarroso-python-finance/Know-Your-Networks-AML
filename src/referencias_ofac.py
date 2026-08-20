@@ -16,6 +16,8 @@ GRUPOS = {
     "NamePartTypeValues": "NamePartType",
     "ScriptValues": "Script",
     "SanctionsProgramValues": "SanctionsProgram",
+    "IDRegDocTypeValues": "IDRegDocType",
+    "CountryValues": "Country",
 }
 
 
