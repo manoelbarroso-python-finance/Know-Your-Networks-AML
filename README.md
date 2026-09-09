@@ -2,6 +2,22 @@
 
 **Investigação de identidade, risco relacional e AML com Python, Neo4j, Graph Data Science e GraphRAG**
 
+![Python](https://img.shields.io/badge/Python-3.13-blue)
+![Neo4j](https://img.shields.io/badge/Neo4j-Graph%20Analytics-008CC1)
+![GDS](https://img.shields.io/badge/Neo4j-GDS-4581C3)
+![Entity Resolution](https://img.shields.io/badge/Entity%20Resolution-Multivariate-informational)
+![AML](https://img.shields.io/badge/AML-Network%20Analytics-critical)
+![GraphRAG](https://img.shields.io/badge/GraphRAG-Text2Cypher-success)
+
+## Acesso rápido
+
+- [Visão completa da metodologia](docs/01_introducao.md)
+- [Entity Resolution e benchmark](docs/05_entity_resolution.md)
+- [Stress testing e robustez](docs/06_robustez_matching.md)
+- [Neo4j e Graph Data Science](docs/07_neo4j_aml.md)
+- [AML transacional](docs/08_aml_transacional.md)
+- [GraphRAG e conclusões](docs/09_graphrag.md)
+
 Este projeto investiga como diferentes métodos podem ser combinados para ampliar o contexto disponível em processos de **KYC, sanctions screening e AML**, sem transformar automaticamente sinais analíticos em decisões de compliance.
 
 A análise parte de uma pergunta básica:
