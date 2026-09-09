@@ -1,0 +1,6 @@
+cenario,precision,recall,f1,average_precision
+Baseline limpo,0.9987,0.9942,0.9964,1.0
+Sem documentos,0.9987,0.9933,0.996,0.9999
+30% campos ausentes,0.9983,0.7957,0.8856,0.9943
+30% ausentes + 10% divergentes,0.9981,0.7054,0.8266,0.9774
+50% ausentes + 20% divergentes,0.9981,0.4752,0.6439,0.9281

@@ -29,3 +29,12 @@ Thumbs.db
 .vscode/
 # Dados processados com identidades reais
 data/processed/private/
+
+# Caches de ferramentas
+.pytest_cache/
+.ruff_cache/
+
+# Artefatos de cobertura e build
+.coverage
+htmlcov/
+*.egg-info/

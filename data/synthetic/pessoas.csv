@@ -1,0 +1,101 @@
+person_id,nome,pais,segmento,sintetico
+PERSON_001,Brenda Alves,Brasil,Varejo,True
+PERSON_002,Sra. Isabelly Câmara,Espanha,Varejo,True
+PERSON_003,Cauã Rocha,Reino Unido,Alta renda,True
+PERSON_004,Dra. Aurora Pastor,México,Alta renda,True
+PERSON_005,Ana Beatriz Alves,México,Alta renda,True
+PERSON_006,Henrique da Conceição,Espanha,Alta renda,True
+PERSON_007,Amanda Novais,Brasil,Varejo,True
+PERSON_008,Yago Leão,Reino Unido,Varejo,True
+PERSON_009,Pietro Pastor,Argentina,Varejo,True
+PERSON_010,André Teixeira,Brasil,Varejo,True
+PERSON_011,Otávio Fernandes,Estados Unidos,Alta renda,True
+PERSON_012,Eduardo Cunha,Portugal,Varejo,True
+PERSON_013,Sr. Caleb Garcia,Reino Unido,Varejo,True
+PERSON_014,Luiz Henrique Ferreira,Espanha,Alta renda,True
+PERSON_015,Julia Aparecida,Reino Unido,Varejo,True
+PERSON_016,Sra. Zoe Campos,Espanha,Varejo,True
+PERSON_017,Anna Liz Novaes,Estados Unidos,Varejo,True
+PERSON_018,Luiz Miguel Oliveira,Argentina,Varejo,True
+PERSON_019,Bernardo Aparecida,Espanha,Varejo,True
+PERSON_020,Heloísa Vargas,México,Varejo,True
+PERSON_021,Bruno da Conceição,Estados Unidos,Varejo,True
+PERSON_022,Mateus da Mota,Chile,Varejo,True
+PERSON_023,Maria Clara Castro,Argentina,Empresarial,True
+PERSON_024,Dr. Gustavo Henrique Rios,Portugal,Varejo,True
+PERSON_025,Brayan Pereira,Espanha,Varejo,True
+PERSON_026,Eloá Nascimento,Reino Unido,Varejo,True
+PERSON_027,Srta. Elisa Martins,México,Varejo,True
+PERSON_028,Júlia Porto,Espanha,Alta renda,True
+PERSON_029,Dra. Hellena Rodrigues,Estados Unidos,Varejo,True
+PERSON_030,Sr. Ian Andrade,México,Alta renda,True
+PERSON_031,Dr. João Felipe Azevedo,México,Alta renda,True
+PERSON_032,Levi Cunha,Argentina,Varejo,True
+PERSON_033,Sara Gonçalves,Brasil,Alta renda,True
+PERSON_034,Natália Casa Grande,Estados Unidos,Varejo,True
+PERSON_035,Davi Miguel da Cruz,Portugal,Varejo,True
+PERSON_036,Dra. Zoe da Luz,Brasil,Varejo,True
+PERSON_037,Dra. Mariane Pacheco,Espanha,Alta renda,True
+PERSON_038,Maria Cecília Câmara,Espanha,Varejo,True
+PERSON_039,Thomas Monteiro,Chile,Varejo,True
+PERSON_040,Benicio Camargo,Reino Unido,Varejo,True
+PERSON_041,Emanuel Vieira,Argentina,Varejo,True
+PERSON_042,Mariana Peixoto,Espanha,Alta renda,True
+PERSON_043,Matheus Garcia,Reino Unido,Varejo,True
+PERSON_044,Nina Moura,Chile,Varejo,True
+PERSON_045,Yuri Albuquerque,Brasil,Varejo,True
+PERSON_046,Bruna Rodrigues,Portugal,Varejo,True
+PERSON_047,Juliana Vargas,México,Varejo,True
+PERSON_048,Manuela Camargo,Portugal,Varejo,True
+PERSON_049,Pedro Henrique Castro,Reino Unido,Varejo,True
+PERSON_050,Agatha Silveira,Espanha,Empresarial,True
+PERSON_051,Sra. Sarah Teixeira,Espanha,Empresarial,True
+PERSON_052,Thiago Caldeira,Argentina,Alta renda,True
+PERSON_053,Letícia Porto,Chile,Varejo,True
+PERSON_054,Fernanda Cassiano,México,Empresarial,True
+PERSON_055,Sr. Vitor Hugo Vasconcelos,México,Alta renda,True
+PERSON_056,Agatha Peixoto,Brasil,Alta renda,True
+PERSON_057,Dr. Antony Camargo,Estados Unidos,Varejo,True
+PERSON_058,Dr. Isaque Araújo,Argentina,Varejo,True
+PERSON_059,Bruno Barros,Reino Unido,Varejo,True
+PERSON_060,Sra. Ana Lívia Teixeira,Reino Unido,Empresarial,True
+PERSON_061,Carolina Cardoso,Portugal,Varejo,True
+PERSON_062,Olívia Novaes,Reino Unido,Varejo,True
+PERSON_063,João Moura,Chile,Varejo,True
+PERSON_064,Mariana Cunha,Portugal,Varejo,True
+PERSON_065,Gabriela Silva,México,Varejo,True
+PERSON_066,Murilo Rios,Chile,Empresarial,True
+PERSON_067,Maria Fernanda Macedo,Portugal,Alta renda,True
+PERSON_068,Milena Campos,Chile,Alta renda,True
+PERSON_069,Henry Gabriel Azevedo,Brasil,Varejo,True
+PERSON_070,Sr. Yuri da Conceição,México,Varejo,True
+PERSON_071,Hellena Abreu,Espanha,Varejo,True
+PERSON_072,Bento da Conceição,Argentina,Varejo,True
+PERSON_073,Arthur Gabriel Farias,México,Varejo,True
+PERSON_074,Théo da Costa,Argentina,Varejo,True
+PERSON_075,Ryan Cunha,Reino Unido,Varejo,True
+PERSON_076,Caroline Silveira,México,Varejo,True
+PERSON_077,Olívia da Cruz,Chile,Varejo,True
+PERSON_078,Maria Luísa Correia,Argentina,Varejo,True
+PERSON_079,Calebe Ribeiro,Estados Unidos,Varejo,True
+PERSON_080,Maria Lima,Reino Unido,Varejo,True
+PERSON_081,Nina Siqueira,Portugal,Varejo,True
+PERSON_082,Carlos Eduardo Araújo,México,Empresarial,True
+PERSON_083,Maitê Caldeira,Argentina,Varejo,True
+PERSON_084,Gael Correia,Espanha,Varejo,True
+PERSON_085,Melissa Carvalho,Reino Unido,Varejo,True
+PERSON_086,Emilly da Mota,Reino Unido,Varejo,True
+PERSON_087,Isadora Barbosa,Brasil,Empresarial,True
+PERSON_088,Beatriz Aragão,Chile,Varejo,True
+PERSON_089,Ágatha Albuquerque,Espanha,Alta renda,True
+PERSON_090,Isaac Cavalcante,Espanha,Varejo,True
+PERSON_091,Raquel Mendes,México,Varejo,True
+PERSON_092,Murilo Araújo,Espanha,Varejo,True
+PERSON_093,Mateus Abreu,Espanha,Empresarial,True
+PERSON_094,Julia Viana,México,Varejo,True
+PERSON_095,Laura Lima,Portugal,Varejo,True
+PERSON_096,Dra. Raquel Cassiano,Chile,Varejo,True
+PERSON_097,Juan Cunha,Argentina,Varejo,True
+PERSON_098,Vitor Hugo Araújo,Reino Unido,Varejo,True
+PERSON_099,Sra. Ana Laura Aragão,Reino Unido,Varejo,True
+PERSON_100,Pietra Montenegro,Argentina,Varejo,True

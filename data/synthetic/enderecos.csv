@@ -1,0 +1,36 @@
+address_id,descricao,sintetico
+ADDRESS_001,"Praça de da Mota, Atila De Paiva, 52427868 Camargo / AP",True
+ADDRESS_002,"Núcleo Pacheco, 326, Araguaia, 50533-158 Pinto Grande / ES",True
+ADDRESS_003,"Pátio Alves, 75, Vista Alegre, 42160733 Ferreira de das Neves / TO",True
+ADDRESS_004,"Viaduto Correia, 55, Santa Lúcia, 45868501 Cavalcanti Verde / GO",True
+ADDRESS_005,"Praça de Ferreira, Vila Olhos D'água, 69816-934 Santos / PA",True
+ADDRESS_006,"Viela de Silveira, 75, Betânia, 95148-465 Sampaio da Mata / PI",True
+ADDRESS_007,"Viaduto Gabrielly Rocha, 59, Nossa Senhora De Fátima, 44369957 Macedo de Rocha / DF",True
+ADDRESS_008,"Esplanada de Ribeiro, 5, São Benedito, 13433-200 Melo / RN",True
+ADDRESS_009,"Vereda Mathias Silva, 77, Garças, 01632870 Campos / PB",True
+ADDRESS_010,"Viaduto Sofia Novais, 957, Novo Glória, 27743-487 da Mota / PB",True
+ADDRESS_011,"Feira Yago Farias, 28, Cinquentenário, 36231665 Leão de Araújo / DF",True
+ADDRESS_012,"Vila de Almeida, 167, Maria Goretti, 66889-373 Lopes do Amparo / AC",True
+ADDRESS_013,"Viela de Guerra, 37, Vila Bandeirantes, 69901627 Aragão / GO",True
+ADDRESS_014,"Quadra Duarte, 56, Vila Real 2ª Seção, 41708-053 Vasconcelos / RS",True
+ADDRESS_015,"Feira Costa, 3, Frei Leopoldo, 71937452 Vasconcelos / TO",True
+ADDRESS_016,"Trecho Alves, 79, Nazare, 19314919 Ferreira / PI",True
+ADDRESS_017,"Campo Natália Ramos, 70, Novo Ouro Preto, 16572-628 Pimenta da Prata / SP",True
+ADDRESS_018,"Trecho Vitor Gabriel Duarte, 51, Caiçaras, 37996-507 Cirino do Amparo / DF",True
+ADDRESS_019,"Loteamento Alana Peixoto, 18, São Bernardo, 13678377 Vieira de Almeida / AP",True
+ADDRESS_020,"Vila Ryan das Neves, 957, São Gonçalo, 68557-444 Campos / SC",True
+ADDRESS_021,"Setor Teixeira, 43, Vila Pilar, 49894-134 Fonseca / CE",True
+ADDRESS_022,"Setor de Cardoso, Ipe, 08427109 Melo do Amparo / PB",True
+ADDRESS_023,"Jardim Mendes, 2, Nossa Senhora Da Aparecida, 19022-941 Campos / PI",True
+ADDRESS_024,"Vale de Câmara, 867, Jardim Montanhês, 49909-133 Ribeiro de Minas / CE",True
+ADDRESS_025,"Campo de Castro, 7, Paulo Vi, 40344-713 Viana Verde / RO",True
+ADDRESS_026,"Setor Câmara, 34, Biquinhas, 24994717 Sampaio das Flores / GO",True
+ADDRESS_027,"Trevo Aparecida, 55, Alto Vera Cruz, 39904902 Moreira de Rezende / PB",True
+ADDRESS_028,"Praça de Porto, 81, Maravilha, 55125-674 Teixeira da Prata / AL",True
+ADDRESS_029,"Jardim Ayla Camargo, Vila São Gabriel Jacui, 80876-038 Pinto do Amparo / RS",True
+ADDRESS_030,"Favela da Mata, 824, Santo Antônio, 10932-480 Borges de Goiás / TO",True
+ADDRESS_031,"Via Cassiano, 94, Vila Nossa Senhora Do Rosário, 67737-826 Peixoto / PE",True
+ADDRESS_032,"Ladeira Vargas, 95, Horto Florestal, 44997278 Ferreira de Farias / PI",True
+ADDRESS_033,"Estrada Rhavi Oliveira, 73, Atila De Paiva, 76627-028 Brito dos Dourados / AM",True
+ADDRESS_034,"Distrito de Jesus, Santa Rosa, 17459615 Dias do Amparo / PI",True
+ADDRESS_035,"Feira Pires, 23, Olaria, 17240050 Fogaça da Praia / PA",True

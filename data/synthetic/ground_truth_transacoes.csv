@@ -1,0 +1,3 @@
+pattern_id,tipo,descricao,contas
+GT_TX_001,Fluxo circular,"ACCOUNT_010 transfere para ACCOUNT_011, que transfere para ACCOUNT_012, com retorno posterior a ACCOUNT_010.",ACCOUNT_010 > ACCOUNT_011 > ACCOUNT_012 > ACCOUNT_010
+GT_TX_002,Concentração e repasse rápido,"Quatro contas concentram recursos em ACCOUNT_005, que realiza repasse subsequente para ACCOUNT_105.",ACCOUNT_020/021/022/023 > ACCOUNT_005 > ACCOUNT_105

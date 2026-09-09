@@ -1,0 +1,6 @@
+risk_id,nome,fonte,categoria,sintetico
+RISK_001,Risk Reference 1,OFAC,Sanctions reference,True
+RISK_002,Risk Reference 2,OFAC,Sanctions reference,True
+RISK_003,Risk Reference 3,OFAC,Sanctions reference,True
+RISK_004,Risk Reference 4,OFAC,Sanctions reference,True
+RISK_005,Risk Reference 5,OFAC,Sanctions reference,True

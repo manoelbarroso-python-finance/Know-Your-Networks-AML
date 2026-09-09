@@ -1,0 +1,6 @@
+pattern_id,tipo,descricao
+GT_001,Exposição direta,PERSON_001 possui conexão direta com RISK_001.
+GT_002,Exposição indireta,PERSON_002 alcança RISK_002 por meio de COMPANY_001.
+GT_003,Ponte por dispositivo,"PERSON_003 e PERSON_004 compartilham DEVICE_001 com PERSON_005, conectado a RISK_003."
+GT_004,Ponte por endereço,"PERSON_006 compartilha endereço com COMPANY_002, conectada a RISK_004."
+GT_005,Hub legítimo,"ADDRESS_035 conecta vários clientes, mas não possui exposição a risco."

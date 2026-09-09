@@ -1,0 +1,367 @@
+origem,destino,tipo,contexto
+PERSON_001,ACCOUNT_001,OWNS,propriedade de conta
+PERSON_002,ACCOUNT_002,OWNS,propriedade de conta
+PERSON_003,ACCOUNT_003,OWNS,propriedade de conta
+PERSON_004,ACCOUNT_004,OWNS,propriedade de conta
+PERSON_005,ACCOUNT_005,OWNS,propriedade de conta
+PERSON_006,ACCOUNT_006,OWNS,propriedade de conta
+PERSON_007,ACCOUNT_007,OWNS,propriedade de conta
+PERSON_008,ACCOUNT_008,OWNS,propriedade de conta
+PERSON_009,ACCOUNT_009,OWNS,propriedade de conta
+PERSON_010,ACCOUNT_010,OWNS,propriedade de conta
+PERSON_011,ACCOUNT_011,OWNS,propriedade de conta
+PERSON_012,ACCOUNT_012,OWNS,propriedade de conta
+PERSON_013,ACCOUNT_013,OWNS,propriedade de conta
+PERSON_014,ACCOUNT_014,OWNS,propriedade de conta
+PERSON_015,ACCOUNT_015,OWNS,propriedade de conta
+PERSON_016,ACCOUNT_016,OWNS,propriedade de conta
+PERSON_017,ACCOUNT_017,OWNS,propriedade de conta
+PERSON_018,ACCOUNT_018,OWNS,propriedade de conta
+PERSON_019,ACCOUNT_019,OWNS,propriedade de conta
+PERSON_020,ACCOUNT_020,OWNS,propriedade de conta
+PERSON_021,ACCOUNT_021,OWNS,propriedade de conta
+PERSON_022,ACCOUNT_022,OWNS,propriedade de conta
+PERSON_023,ACCOUNT_023,OWNS,propriedade de conta
+PERSON_024,ACCOUNT_024,OWNS,propriedade de conta
+PERSON_025,ACCOUNT_025,OWNS,propriedade de conta
+PERSON_026,ACCOUNT_026,OWNS,propriedade de conta
+PERSON_027,ACCOUNT_027,OWNS,propriedade de conta
+PERSON_028,ACCOUNT_028,OWNS,propriedade de conta
+PERSON_029,ACCOUNT_029,OWNS,propriedade de conta
+PERSON_030,ACCOUNT_030,OWNS,propriedade de conta
+PERSON_031,ACCOUNT_031,OWNS,propriedade de conta
+PERSON_032,ACCOUNT_032,OWNS,propriedade de conta
+PERSON_033,ACCOUNT_033,OWNS,propriedade de conta
+PERSON_034,ACCOUNT_034,OWNS,propriedade de conta
+PERSON_035,ACCOUNT_035,OWNS,propriedade de conta
+PERSON_036,ACCOUNT_036,OWNS,propriedade de conta
+PERSON_037,ACCOUNT_037,OWNS,propriedade de conta
+PERSON_038,ACCOUNT_038,OWNS,propriedade de conta
+PERSON_039,ACCOUNT_039,OWNS,propriedade de conta
+PERSON_040,ACCOUNT_040,OWNS,propriedade de conta
+PERSON_041,ACCOUNT_041,OWNS,propriedade de conta
+PERSON_042,ACCOUNT_042,OWNS,propriedade de conta
+PERSON_043,ACCOUNT_043,OWNS,propriedade de conta
+PERSON_044,ACCOUNT_044,OWNS,propriedade de conta
+PERSON_045,ACCOUNT_045,OWNS,propriedade de conta
+PERSON_046,ACCOUNT_046,OWNS,propriedade de conta
+PERSON_047,ACCOUNT_047,OWNS,propriedade de conta
+PERSON_048,ACCOUNT_048,OWNS,propriedade de conta
+PERSON_049,ACCOUNT_049,OWNS,propriedade de conta
+PERSON_050,ACCOUNT_050,OWNS,propriedade de conta
+PERSON_051,ACCOUNT_051,OWNS,propriedade de conta
+PERSON_052,ACCOUNT_052,OWNS,propriedade de conta
+PERSON_053,ACCOUNT_053,OWNS,propriedade de conta
+PERSON_054,ACCOUNT_054,OWNS,propriedade de conta
+PERSON_055,ACCOUNT_055,OWNS,propriedade de conta
+PERSON_056,ACCOUNT_056,OWNS,propriedade de conta
+PERSON_057,ACCOUNT_057,OWNS,propriedade de conta
+PERSON_058,ACCOUNT_058,OWNS,propriedade de conta
+PERSON_059,ACCOUNT_059,OWNS,propriedade de conta
+PERSON_060,ACCOUNT_060,OWNS,propriedade de conta
+PERSON_061,ACCOUNT_061,OWNS,propriedade de conta
+PERSON_062,ACCOUNT_062,OWNS,propriedade de conta
+PERSON_063,ACCOUNT_063,OWNS,propriedade de conta
+PERSON_064,ACCOUNT_064,OWNS,propriedade de conta
+PERSON_065,ACCOUNT_065,OWNS,propriedade de conta
+PERSON_066,ACCOUNT_066,OWNS,propriedade de conta
+PERSON_067,ACCOUNT_067,OWNS,propriedade de conta
+PERSON_068,ACCOUNT_068,OWNS,propriedade de conta
+PERSON_069,ACCOUNT_069,OWNS,propriedade de conta
+PERSON_070,ACCOUNT_070,OWNS,propriedade de conta
+PERSON_071,ACCOUNT_071,OWNS,propriedade de conta
+PERSON_072,ACCOUNT_072,OWNS,propriedade de conta
+PERSON_073,ACCOUNT_073,OWNS,propriedade de conta
+PERSON_074,ACCOUNT_074,OWNS,propriedade de conta
+PERSON_075,ACCOUNT_075,OWNS,propriedade de conta
+PERSON_076,ACCOUNT_076,OWNS,propriedade de conta
+PERSON_077,ACCOUNT_077,OWNS,propriedade de conta
+PERSON_078,ACCOUNT_078,OWNS,propriedade de conta
+PERSON_079,ACCOUNT_079,OWNS,propriedade de conta
+PERSON_080,ACCOUNT_080,OWNS,propriedade de conta
+PERSON_081,ACCOUNT_081,OWNS,propriedade de conta
+PERSON_082,ACCOUNT_082,OWNS,propriedade de conta
+PERSON_083,ACCOUNT_083,OWNS,propriedade de conta
+PERSON_084,ACCOUNT_084,OWNS,propriedade de conta
+PERSON_085,ACCOUNT_085,OWNS,propriedade de conta
+PERSON_086,ACCOUNT_086,OWNS,propriedade de conta
+PERSON_087,ACCOUNT_087,OWNS,propriedade de conta
+PERSON_088,ACCOUNT_088,OWNS,propriedade de conta
+PERSON_089,ACCOUNT_089,OWNS,propriedade de conta
+PERSON_090,ACCOUNT_090,OWNS,propriedade de conta
+PERSON_091,ACCOUNT_091,OWNS,propriedade de conta
+PERSON_092,ACCOUNT_092,OWNS,propriedade de conta
+PERSON_093,ACCOUNT_093,OWNS,propriedade de conta
+PERSON_094,ACCOUNT_094,OWNS,propriedade de conta
+PERSON_095,ACCOUNT_095,OWNS,propriedade de conta
+PERSON_096,ACCOUNT_096,OWNS,propriedade de conta
+PERSON_097,ACCOUNT_097,OWNS,propriedade de conta
+PERSON_098,ACCOUNT_098,OWNS,propriedade de conta
+PERSON_099,ACCOUNT_099,OWNS,propriedade de conta
+PERSON_100,ACCOUNT_100,OWNS,propriedade de conta
+COMPANY_001,ACCOUNT_101,OWNS,propriedade de conta
+COMPANY_002,ACCOUNT_102,OWNS,propriedade de conta
+COMPANY_003,ACCOUNT_103,OWNS,propriedade de conta
+COMPANY_004,ACCOUNT_104,OWNS,propriedade de conta
+COMPANY_005,ACCOUNT_105,OWNS,propriedade de conta
+COMPANY_006,ACCOUNT_106,OWNS,propriedade de conta
+COMPANY_007,ACCOUNT_107,OWNS,propriedade de conta
+COMPANY_008,ACCOUNT_108,OWNS,propriedade de conta
+COMPANY_009,ACCOUNT_109,OWNS,propriedade de conta
+COMPANY_010,ACCOUNT_110,OWNS,propriedade de conta
+COMPANY_011,ACCOUNT_111,OWNS,propriedade de conta
+COMPANY_012,ACCOUNT_112,OWNS,propriedade de conta
+COMPANY_013,ACCOUNT_113,OWNS,propriedade de conta
+COMPANY_014,ACCOUNT_114,OWNS,propriedade de conta
+COMPANY_015,ACCOUNT_115,OWNS,propriedade de conta
+COMPANY_016,ACCOUNT_116,OWNS,propriedade de conta
+COMPANY_017,ACCOUNT_117,OWNS,propriedade de conta
+COMPANY_018,ACCOUNT_118,OWNS,propriedade de conta
+COMPANY_019,ACCOUNT_119,OWNS,propriedade de conta
+COMPANY_020,ACCOUNT_120,OWNS,propriedade de conta
+COMPANY_021,ACCOUNT_121,OWNS,propriedade de conta
+COMPANY_022,ACCOUNT_122,OWNS,propriedade de conta
+COMPANY_023,ACCOUNT_123,OWNS,propriedade de conta
+COMPANY_024,ACCOUNT_124,OWNS,propriedade de conta
+COMPANY_025,ACCOUNT_125,OWNS,propriedade de conta
+PERSON_001,DEVICE_007,USES_DEVICE,uso de dispositivo
+PERSON_001,ADDRESS_009,LIVES_AT,endereço cadastrado
+PERSON_002,DEVICE_002,USES_DEVICE,uso de dispositivo
+PERSON_002,ADDRESS_005,LIVES_AT,endereço cadastrado
+PERSON_003,DEVICE_017,USES_DEVICE,uso de dispositivo
+PERSON_003,ADDRESS_020,LIVES_AT,endereço cadastrado
+PERSON_004,DEVICE_012,USES_DEVICE,uso de dispositivo
+PERSON_004,ADDRESS_011,LIVES_AT,endereço cadastrado
+PERSON_005,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_005,ADDRESS_017,LIVES_AT,endereço cadastrado
+PERSON_006,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_006,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_007,DEVICE_010,USES_DEVICE,uso de dispositivo
+PERSON_007,ADDRESS_008,LIVES_AT,endereço cadastrado
+PERSON_008,DEVICE_029,USES_DEVICE,uso de dispositivo
+PERSON_008,ADDRESS_023,LIVES_AT,endereço cadastrado
+PERSON_009,DEVICE_009,USES_DEVICE,uso de dispositivo
+PERSON_009,ADDRESS_022,LIVES_AT,endereço cadastrado
+PERSON_010,DEVICE_016,USES_DEVICE,uso de dispositivo
+PERSON_010,ADDRESS_032,LIVES_AT,endereço cadastrado
+PERSON_011,DEVICE_008,USES_DEVICE,uso de dispositivo
+PERSON_011,ADDRESS_035,LIVES_AT,endereço cadastrado
+PERSON_012,DEVICE_029,USES_DEVICE,uso de dispositivo
+PERSON_012,ADDRESS_007,LIVES_AT,endereço cadastrado
+PERSON_013,DEVICE_005,USES_DEVICE,uso de dispositivo
+PERSON_013,ADDRESS_019,LIVES_AT,endereço cadastrado
+PERSON_014,DEVICE_002,USES_DEVICE,uso de dispositivo
+PERSON_014,ADDRESS_011,LIVES_AT,endereço cadastrado
+PERSON_015,DEVICE_014,USES_DEVICE,uso de dispositivo
+PERSON_015,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_016,DEVICE_030,USES_DEVICE,uso de dispositivo
+PERSON_016,ADDRESS_006,LIVES_AT,endereço cadastrado
+PERSON_017,DEVICE_027,USES_DEVICE,uso de dispositivo
+PERSON_017,ADDRESS_004,LIVES_AT,endereço cadastrado
+PERSON_018,DEVICE_023,USES_DEVICE,uso de dispositivo
+PERSON_018,ADDRESS_030,LIVES_AT,endereço cadastrado
+PERSON_019,DEVICE_027,USES_DEVICE,uso de dispositivo
+PERSON_019,ADDRESS_008,LIVES_AT,endereço cadastrado
+PERSON_020,DEVICE_027,USES_DEVICE,uso de dispositivo
+PERSON_020,ADDRESS_005,LIVES_AT,endereço cadastrado
+PERSON_021,DEVICE_016,USES_DEVICE,uso de dispositivo
+PERSON_021,ADDRESS_017,LIVES_AT,endereço cadastrado
+PERSON_022,DEVICE_010,USES_DEVICE,uso de dispositivo
+PERSON_022,ADDRESS_001,LIVES_AT,endereço cadastrado
+PERSON_023,DEVICE_024,USES_DEVICE,uso de dispositivo
+PERSON_023,ADDRESS_012,LIVES_AT,endereço cadastrado
+PERSON_024,DEVICE_020,USES_DEVICE,uso de dispositivo
+PERSON_024,ADDRESS_015,LIVES_AT,endereço cadastrado
+PERSON_025,DEVICE_012,USES_DEVICE,uso de dispositivo
+PERSON_025,ADDRESS_032,LIVES_AT,endereço cadastrado
+PERSON_026,DEVICE_003,USES_DEVICE,uso de dispositivo
+PERSON_026,ADDRESS_026,LIVES_AT,endereço cadastrado
+PERSON_027,DEVICE_023,USES_DEVICE,uso de dispositivo
+PERSON_027,ADDRESS_014,LIVES_AT,endereço cadastrado
+PERSON_028,DEVICE_008,USES_DEVICE,uso de dispositivo
+PERSON_028,ADDRESS_001,LIVES_AT,endereço cadastrado
+PERSON_029,DEVICE_029,USES_DEVICE,uso de dispositivo
+PERSON_029,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_030,DEVICE_008,USES_DEVICE,uso de dispositivo
+PERSON_030,ADDRESS_002,LIVES_AT,endereço cadastrado
+PERSON_031,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_031,ADDRESS_003,LIVES_AT,endereço cadastrado
+PERSON_032,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_032,ADDRESS_032,LIVES_AT,endereço cadastrado
+PERSON_033,DEVICE_005,USES_DEVICE,uso de dispositivo
+PERSON_033,ADDRESS_027,LIVES_AT,endereço cadastrado
+PERSON_034,DEVICE_006,USES_DEVICE,uso de dispositivo
+PERSON_034,ADDRESS_013,LIVES_AT,endereço cadastrado
+PERSON_035,DEVICE_018,USES_DEVICE,uso de dispositivo
+PERSON_035,ADDRESS_026,LIVES_AT,endereço cadastrado
+PERSON_036,DEVICE_027,USES_DEVICE,uso de dispositivo
+PERSON_036,ADDRESS_002,LIVES_AT,endereço cadastrado
+PERSON_037,DEVICE_006,USES_DEVICE,uso de dispositivo
+PERSON_037,ADDRESS_010,LIVES_AT,endereço cadastrado
+PERSON_038,DEVICE_010,USES_DEVICE,uso de dispositivo
+PERSON_038,ADDRESS_035,LIVES_AT,endereço cadastrado
+PERSON_039,DEVICE_024,USES_DEVICE,uso de dispositivo
+PERSON_039,ADDRESS_012,LIVES_AT,endereço cadastrado
+PERSON_040,DEVICE_030,USES_DEVICE,uso de dispositivo
+PERSON_040,ADDRESS_018,LIVES_AT,endereço cadastrado
+PERSON_041,DEVICE_016,USES_DEVICE,uso de dispositivo
+PERSON_041,ADDRESS_016,LIVES_AT,endereço cadastrado
+PERSON_042,DEVICE_005,USES_DEVICE,uso de dispositivo
+PERSON_042,ADDRESS_033,LIVES_AT,endereço cadastrado
+PERSON_043,DEVICE_001,USES_DEVICE,uso de dispositivo
+PERSON_043,ADDRESS_007,LIVES_AT,endereço cadastrado
+PERSON_044,DEVICE_007,USES_DEVICE,uso de dispositivo
+PERSON_044,ADDRESS_010,LIVES_AT,endereço cadastrado
+PERSON_045,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_045,ADDRESS_001,LIVES_AT,endereço cadastrado
+PERSON_046,DEVICE_021,USES_DEVICE,uso de dispositivo
+PERSON_046,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_047,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_047,ADDRESS_011,LIVES_AT,endereço cadastrado
+PERSON_048,DEVICE_016,USES_DEVICE,uso de dispositivo
+PERSON_048,ADDRESS_033,LIVES_AT,endereço cadastrado
+PERSON_049,DEVICE_021,USES_DEVICE,uso de dispositivo
+PERSON_049,ADDRESS_027,LIVES_AT,endereço cadastrado
+PERSON_050,DEVICE_018,USES_DEVICE,uso de dispositivo
+PERSON_050,ADDRESS_015,LIVES_AT,endereço cadastrado
+PERSON_051,DEVICE_006,USES_DEVICE,uso de dispositivo
+PERSON_051,ADDRESS_031,LIVES_AT,endereço cadastrado
+PERSON_052,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_052,ADDRESS_001,LIVES_AT,endereço cadastrado
+PERSON_053,DEVICE_022,USES_DEVICE,uso de dispositivo
+PERSON_053,ADDRESS_003,LIVES_AT,endereço cadastrado
+PERSON_054,DEVICE_023,USES_DEVICE,uso de dispositivo
+PERSON_054,ADDRESS_029,LIVES_AT,endereço cadastrado
+PERSON_055,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_055,ADDRESS_016,LIVES_AT,endereço cadastrado
+PERSON_056,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_056,ADDRESS_020,LIVES_AT,endereço cadastrado
+PERSON_057,DEVICE_028,USES_DEVICE,uso de dispositivo
+PERSON_057,ADDRESS_003,LIVES_AT,endereço cadastrado
+PERSON_058,DEVICE_012,USES_DEVICE,uso de dispositivo
+PERSON_058,ADDRESS_035,LIVES_AT,endereço cadastrado
+PERSON_059,DEVICE_010,USES_DEVICE,uso de dispositivo
+PERSON_059,ADDRESS_005,LIVES_AT,endereço cadastrado
+PERSON_060,DEVICE_015,USES_DEVICE,uso de dispositivo
+PERSON_060,ADDRESS_018,LIVES_AT,endereço cadastrado
+PERSON_061,DEVICE_020,USES_DEVICE,uso de dispositivo
+PERSON_061,ADDRESS_011,LIVES_AT,endereço cadastrado
+PERSON_062,DEVICE_029,USES_DEVICE,uso de dispositivo
+PERSON_062,ADDRESS_019,LIVES_AT,endereço cadastrado
+PERSON_063,DEVICE_009,USES_DEVICE,uso de dispositivo
+PERSON_063,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_064,DEVICE_028,USES_DEVICE,uso de dispositivo
+PERSON_064,ADDRESS_018,LIVES_AT,endereço cadastrado
+PERSON_065,DEVICE_001,USES_DEVICE,uso de dispositivo
+PERSON_065,ADDRESS_021,LIVES_AT,endereço cadastrado
+PERSON_066,DEVICE_017,USES_DEVICE,uso de dispositivo
+PERSON_066,ADDRESS_006,LIVES_AT,endereço cadastrado
+PERSON_067,DEVICE_020,USES_DEVICE,uso de dispositivo
+PERSON_067,ADDRESS_030,LIVES_AT,endereço cadastrado
+PERSON_068,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_068,ADDRESS_026,LIVES_AT,endereço cadastrado
+PERSON_069,DEVICE_005,USES_DEVICE,uso de dispositivo
+PERSON_069,ADDRESS_027,LIVES_AT,endereço cadastrado
+PERSON_070,DEVICE_013,USES_DEVICE,uso de dispositivo
+PERSON_070,ADDRESS_001,LIVES_AT,endereço cadastrado
+PERSON_071,DEVICE_029,USES_DEVICE,uso de dispositivo
+PERSON_071,ADDRESS_006,LIVES_AT,endereço cadastrado
+PERSON_072,DEVICE_018,USES_DEVICE,uso de dispositivo
+PERSON_072,ADDRESS_007,LIVES_AT,endereço cadastrado
+PERSON_073,DEVICE_028,USES_DEVICE,uso de dispositivo
+PERSON_073,ADDRESS_026,LIVES_AT,endereço cadastrado
+PERSON_074,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_074,ADDRESS_016,LIVES_AT,endereço cadastrado
+PERSON_075,DEVICE_015,USES_DEVICE,uso de dispositivo
+PERSON_075,ADDRESS_023,LIVES_AT,endereço cadastrado
+PERSON_076,DEVICE_024,USES_DEVICE,uso de dispositivo
+PERSON_076,ADDRESS_030,LIVES_AT,endereço cadastrado
+PERSON_077,DEVICE_001,USES_DEVICE,uso de dispositivo
+PERSON_077,ADDRESS_024,LIVES_AT,endereço cadastrado
+PERSON_078,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_078,ADDRESS_011,LIVES_AT,endereço cadastrado
+PERSON_079,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_079,ADDRESS_009,LIVES_AT,endereço cadastrado
+PERSON_080,DEVICE_024,USES_DEVICE,uso de dispositivo
+PERSON_080,ADDRESS_017,LIVES_AT,endereço cadastrado
+PERSON_081,DEVICE_007,USES_DEVICE,uso de dispositivo
+PERSON_081,ADDRESS_012,LIVES_AT,endereço cadastrado
+PERSON_082,DEVICE_016,USES_DEVICE,uso de dispositivo
+PERSON_082,ADDRESS_027,LIVES_AT,endereço cadastrado
+PERSON_083,DEVICE_019,USES_DEVICE,uso de dispositivo
+PERSON_083,ADDRESS_033,LIVES_AT,endereço cadastrado
+PERSON_084,DEVICE_027,USES_DEVICE,uso de dispositivo
+PERSON_084,ADDRESS_027,LIVES_AT,endereço cadastrado
+PERSON_085,DEVICE_019,USES_DEVICE,uso de dispositivo
+PERSON_085,ADDRESS_011,LIVES_AT,endereço cadastrado
+PERSON_086,DEVICE_013,USES_DEVICE,uso de dispositivo
+PERSON_086,ADDRESS_005,LIVES_AT,endereço cadastrado
+PERSON_087,DEVICE_012,USES_DEVICE,uso de dispositivo
+PERSON_087,ADDRESS_033,LIVES_AT,endereço cadastrado
+PERSON_088,DEVICE_013,USES_DEVICE,uso de dispositivo
+PERSON_088,ADDRESS_004,LIVES_AT,endereço cadastrado
+PERSON_089,DEVICE_020,USES_DEVICE,uso de dispositivo
+PERSON_089,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_090,DEVICE_027,USES_DEVICE,uso de dispositivo
+PERSON_090,ADDRESS_010,LIVES_AT,endereço cadastrado
+PERSON_091,DEVICE_014,USES_DEVICE,uso de dispositivo
+PERSON_091,ADDRESS_019,LIVES_AT,endereço cadastrado
+PERSON_092,DEVICE_008,USES_DEVICE,uso de dispositivo
+PERSON_092,ADDRESS_010,LIVES_AT,endereço cadastrado
+PERSON_093,DEVICE_008,USES_DEVICE,uso de dispositivo
+PERSON_093,ADDRESS_035,LIVES_AT,endereço cadastrado
+PERSON_094,DEVICE_023,USES_DEVICE,uso de dispositivo
+PERSON_094,ADDRESS_030,LIVES_AT,endereço cadastrado
+PERSON_095,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_095,ADDRESS_034,LIVES_AT,endereço cadastrado
+PERSON_096,DEVICE_004,USES_DEVICE,uso de dispositivo
+PERSON_096,ADDRESS_031,LIVES_AT,endereço cadastrado
+PERSON_097,DEVICE_002,USES_DEVICE,uso de dispositivo
+PERSON_097,ADDRESS_017,LIVES_AT,endereço cadastrado
+PERSON_098,DEVICE_018,USES_DEVICE,uso de dispositivo
+PERSON_098,ADDRESS_013,LIVES_AT,endereço cadastrado
+PERSON_099,DEVICE_005,USES_DEVICE,uso de dispositivo
+PERSON_099,ADDRESS_007,LIVES_AT,endereço cadastrado
+PERSON_100,DEVICE_025,USES_DEVICE,uso de dispositivo
+PERSON_100,ADDRESS_012,LIVES_AT,endereço cadastrado
+COMPANY_001,ADDRESS_011,REGISTERED_AT,endereço societário
+COMPANY_002,ADDRESS_033,REGISTERED_AT,endereço societário
+COMPANY_003,ADDRESS_006,REGISTERED_AT,endereço societário
+COMPANY_004,ADDRESS_033,REGISTERED_AT,endereço societário
+COMPANY_005,ADDRESS_033,REGISTERED_AT,endereço societário
+COMPANY_006,ADDRESS_021,REGISTERED_AT,endereço societário
+COMPANY_007,ADDRESS_006,REGISTERED_AT,endereço societário
+COMPANY_008,ADDRESS_006,REGISTERED_AT,endereço societário
+COMPANY_009,ADDRESS_010,REGISTERED_AT,endereço societário
+COMPANY_010,ADDRESS_021,REGISTERED_AT,endereço societário
+COMPANY_011,ADDRESS_006,REGISTERED_AT,endereço societário
+COMPANY_012,ADDRESS_016,REGISTERED_AT,endereço societário
+COMPANY_013,ADDRESS_005,REGISTERED_AT,endereço societário
+COMPANY_014,ADDRESS_019,REGISTERED_AT,endereço societário
+COMPANY_015,ADDRESS_001,REGISTERED_AT,endereço societário
+COMPANY_016,ADDRESS_025,REGISTERED_AT,endereço societário
+COMPANY_017,ADDRESS_002,REGISTERED_AT,endereço societário
+COMPANY_018,ADDRESS_007,REGISTERED_AT,endereço societário
+COMPANY_019,ADDRESS_007,REGISTERED_AT,endereço societário
+COMPANY_020,ADDRESS_030,REGISTERED_AT,endereço societário
+COMPANY_021,ADDRESS_002,REGISTERED_AT,endereço societário
+COMPANY_022,ADDRESS_016,REGISTERED_AT,endereço societário
+COMPANY_023,ADDRESS_021,REGISTERED_AT,endereço societário
+COMPANY_024,ADDRESS_019,REGISTERED_AT,endereço societário
+COMPANY_025,ADDRESS_024,REGISTERED_AT,endereço societário
+PERSON_001,RISK_001,MATCHED_TO,screening direto
+PERSON_002,COMPANY_001,CONTROLS,controle societário
+COMPANY_001,RISK_002,MATCHED_TO,screening corporativo
+PERSON_003,DEVICE_001,USES_DEVICE,dispositivo compartilhado
+PERSON_004,DEVICE_001,USES_DEVICE,dispositivo compartilhado
+PERSON_005,DEVICE_001,USES_DEVICE,dispositivo compartilhado
+PERSON_005,RISK_003,MATCHED_TO,screening direto
+PERSON_006,ADDRESS_001,LIVES_AT,endereço compartilhado
+COMPANY_002,ADDRESS_001,REGISTERED_AT,endereço compartilhado
+COMPANY_002,RISK_004,MATCHED_TO,screening corporativo
+PERSON_020,ADDRESS_035,LIVES_AT,endereço coletivo legítimo
+PERSON_021,ADDRESS_035,LIVES_AT,endereço coletivo legítimo
+PERSON_022,ADDRESS_035,LIVES_AT,endereço coletivo legítimo
+PERSON_023,ADDRESS_035,LIVES_AT,endereço coletivo legítimo
+PERSON_024,ADDRESS_035,LIVES_AT,endereço coletivo legítimo
+PERSON_025,ADDRESS_035,LIVES_AT,endereço coletivo legítimo

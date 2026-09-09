@@ -1,0 +1,11 @@
+cenario,metodo,precision,recall,f1,average_precision
+Baseline limpo,Similaridade nominal,0.5,1.0,0.6667,0.6239
+Baseline limpo,Modelo multivariado,0.9987,0.9942,0.9964,1.0
+25% com typo,Similaridade nominal,0.5,1.0,0.6667,0.6118
+25% com typo,Modelo multivariado,0.9987,0.9942,0.9964,1.0
+50% com typo,Similaridade nominal,0.5,1.0,0.6667,0.6031
+50% com typo,Modelo multivariado,0.9987,0.9942,0.9964,1.0
+30% com token ausente,Similaridade nominal,0.5,1.0,0.6667,0.6006
+30% com token ausente,Modelo multivariado,0.9987,0.9942,0.9964,0.9999
+50% com ruído misto,Similaridade nominal,0.5,1.0,0.6667,0.602
+50% com ruído misto,Modelo multivariado,0.9987,0.9942,0.9964,1.0

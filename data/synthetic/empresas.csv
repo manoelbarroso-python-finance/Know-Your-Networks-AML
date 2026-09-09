@@ -1,0 +1,26 @@
+company_id,nome,jurisdicao,sintetico
+COMPANY_001,Araújo Moraes S/A,Chile,True
+COMPANY_002,Azevedo Peixoto S/A,Espanha,True
+COMPANY_003,Guerra Campos - EI,Brasil,True
+COMPANY_004,Pacheco Peixoto S/A,Portugal,True
+COMPANY_005,Leão e Filhos,Estados Unidos,True
+COMPANY_006,da Luz,Argentina,True
+COMPANY_007,Rios Silva Ltda.,Chile,True
+COMPANY_008,da Luz Gonçalves S.A.,Estados Unidos,True
+COMPANY_009,Marques,Chile,True
+COMPANY_010,Sá,Brasil,True
+COMPANY_011,Albuquerque - ME,Reino Unido,True
+COMPANY_012,Barbosa - EI,Reino Unido,True
+COMPANY_013,Montenegro da Luz S.A.,Brasil,True
+COMPANY_014,Azevedo,Chile,True
+COMPANY_015,Freitas da Paz S.A.,Argentina,True
+COMPANY_016,Nogueira,Reino Unido,True
+COMPANY_017,Pimenta,Reino Unido,True
+COMPANY_018,Rios - EI,Reino Unido,True
+COMPANY_019,Ribeiro,Portugal,True
+COMPANY_020,Carvalho Ltda.,Espanha,True
+COMPANY_021,Caldeira e Filhos,Chile,True
+COMPANY_022,da Mata da Paz - EI,Brasil,True
+COMPANY_023,Silva Fernandes S.A.,Estados Unidos,True
+COMPANY_024,Montenegro,Portugal,True
+COMPANY_025,da Cunha,Portugal,True

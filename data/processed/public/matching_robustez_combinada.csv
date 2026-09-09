@@ -1,0 +1,21 @@
+contexto,ruido_nome,f1_multivariado,ap_nominal,ap_multivariado,ganho_ap
+Contexto limpo,Nome limpo,0.9964,0.6239,1.0,0.376
+Contexto limpo,Ruído leve,0.9964,0.6019,1.0,0.3981
+Contexto limpo,Ruído moderado,0.9964,0.5782,1.0,0.4218
+Contexto limpo,Ruído severo,0.9964,0.5799,1.0,0.42
+30% ausentes,Nome limpo,0.8894,0.6239,0.9956,0.3717
+30% ausentes,Ruído leve,0.8886,0.6019,0.9951,0.3933
+30% ausentes,Ruído moderado,0.891,0.5782,0.9949,0.4167
+30% ausentes,Ruído severo,0.8928,0.5799,0.995,0.4151
+30% aus. + 10% div.,Nome limpo,0.8317,0.6239,0.9794,0.3555
+30% aus. + 10% div.,Ruído leve,0.8336,0.6019,0.978,0.3762
+30% aus. + 10% div.,Ruído moderado,0.8375,0.5782,0.9773,0.3991
+30% aus. + 10% div.,Ruído severo,0.8402,0.5799,0.9771,0.3972
+50% aus. + 20% div.,Nome limpo,0.6314,0.6239,0.9223,0.2983
+50% aus. + 20% div.,Ruído leve,0.6321,0.6019,0.9168,0.315
+50% aus. + 20% div.,Ruído moderado,0.6368,0.5782,0.9151,0.337
+50% aus. + 20% div.,Ruído severo,0.6402,0.5799,0.914,0.3341
+70% aus. + 30% div.,Nome limpo,0.3719,0.6239,0.8316,0.2077
+70% aus. + 30% div.,Ruído leve,0.3737,0.6019,0.8131,0.2112
+70% aus. + 30% div.,Ruído moderado,0.3819,0.5782,0.8063,0.2281
+70% aus. + 30% div.,Ruído severo,0.3848,0.5799,0.8015,0.2216

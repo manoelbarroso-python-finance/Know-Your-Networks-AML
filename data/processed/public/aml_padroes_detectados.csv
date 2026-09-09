@@ -1,0 +1,3 @@
+tipo,conta_principal,detalhe
+Fluxo circular,ACCOUNT_010,ACCOUNT_010 > ACCOUNT_011 > ACCOUNT_012 > ACCOUNT_010
+Concentração e repasse rápido,ACCOUNT_005,4 remetentes > ACCOUNT_005 > ACCOUNT_105

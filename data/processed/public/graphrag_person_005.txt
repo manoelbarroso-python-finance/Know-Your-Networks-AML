@@ -1,0 +1,145 @@
+GRAPH RAG — PROVA DE CONCEITO
+================================
+
+MODELO
+gpt-5.6-luna
+
+PERGUNTA
+Analise PERSON_005 como um caso investigativo.
+
+Recupere apenas evidências existentes no grafo que ajudem a
+contextualizar o caso, incluindo quando disponíveis:
+
+1. dados básicos da pessoa;
+2. entidades RiskEntity diretamente relacionadas;
+3. dispositivos utilizados e outras pessoas que compartilham
+   esses dispositivos;
+4. contas pertencentes à pessoa;
+5. transferências recebidas ou enviadas por suas contas em
+   20 de julho de 2026, incluindo contraparte, valor e horário.
+
+Não utilize propriedades de ground truth ou pattern_id.
+Não faça inferências além dos dados armazenados no grafo.
+
+CYPHER GERADO PELO LLM
+----------------------
+MATCH (p:Person {id: 'PERSON_005'})
+
+CALL {
+    WITH p
+    RETURN {
+        id: p.id,
+        nome: p.nome,
+        pais: p.pais,
+        segmento: p.segmento
+    } AS dados_basicos
+}
+
+CALL {
+    WITH p
+    OPTIONAL MATCH (p)-[:MATCHED_TO]->(r:RiskEntity)
+    RETURN collect(DISTINCT {
+        id: r.id,
+        nome: r.nome,
+        fonte: r.fonte,
+        categoria: r.categoria
+    }) AS entidades_risco
+}
+
+CALL {
+    WITH p
+    MATCH (p)-[:USES_DEVICE]->(d:Device)
+    OPTIONAL MATCH (outra:Person)-[:USES_DEVICE]->(d)
+    WHERE outra <> p
+    WITH d, collect(DISTINCT outra.id) AS outras_pessoas
+    RETURN collect({
+        id: d.id,
+        tipo: d.tipo,
+        outras_pessoas: outras_pessoas
+    }) AS dispositivos
+}
+
+CALL {
+    WITH p
+    OPTIONAL MATCH (p)-[:OWNS]->(a:Account)
+    RETURN collect(DISTINCT {
+        id: a.id,
+        tipo: a.tipo,
+        moeda: a.moeda
+    }) AS contas
+}
+
+CALL {
+    WITH p
+    MATCH (p)-[:OWNS]->(a:Account)
+    MATCH (a)-[t:TRANSFERRED_TO]-(contraparte:Account)
+    WHERE t.timestamp >= datetime('2026-07-20T00:00:00Z')
+      AND t.timestamp < datetime('2026-07-21T00:00:00Z')
+    RETURN collect(DISTINCT {
+        conta: a.id,
+        direcao: CASE
+            WHEN startNode(t) = a THEN 'enviada'
+            ELSE 'recebida'
+        END,
+        contraparte_conta: contraparte.id,
+        contraparte_proprietarios: [
+            (proprietario)-[:OWNS]->(contraparte) | proprietario.id
+        ],
+        valor: t.valor,
+        moeda: t.moeda,
+        timestamp: t.timestamp,
+        tx_id: t.tx_id
+    }) AS transferencias
+}
+
+RETURN
+    dados_basicos,
+    entidades_risco,
+    dispositivos,
+    contas,
+    transferencias
+
+CONTEXTO RECUPERADO
+-------------------
+<Record dados_basicos={'id': 'PERSON_005', 'nome': 'Ana Beatriz Alves', 'pais': 'México', 'segmento': 'Alta renda'} entidades_risco=[{'categoria': 'Sanctions reference', 'fonte': 'OFAC', 'id': 'RISK_003', 'nome': 'Risk Reference 3'}] dispositivos=[{'outras_pessoas': ['PERSON_003', 'PERSON_004', 'PERSON_043', 'PERSON_065', 'PERSON_077'], 'tipo': 'mobile', 'id': 'DEVICE_001'}, {'outras_pessoas': ['PERSON_006', 'PERSON_032', 'PERSON_052', 'PERSON_074', 'PERSON_079', 'PERSON_095', 'PERSON_100'], 'tipo': 'mobile', 'id': 'DEVICE_025'}] contas=[{'id': 'ACCOUNT_005', 'moeda': 'USD', 'tipo': 'Pessoa física'}] transferencias=[{'moeda': 'USD', 'contraparte_proprietarios': ['COMPANY_005'], 'valor': 10700.0, 'conta': 'ACCOUNT_005', 'direcao': 'enviada', 'tx_id': 'TX_00458', 'contraparte_conta': 'ACCOUNT_105', 'timestamp': neo4j.time.DateTime(2026, 7, 20, 10, 35, 0, 0, tzinfo=<UTC>)}, {'moeda': 'USD', 'contraparte_proprietarios': ['PERSON_020'], 'valor': 2800.0, 'conta': 'ACCOUNT_005', 'direcao': 'recebida', 'tx_id': 'TX_00454', 'contraparte_conta': 'ACCOUNT_020', 'timestamp': neo4j.time.DateTime(2026, 7, 20, 9, 0, 0, 0, tzinfo=<UTC>)}, {'moeda': 'USD', 'contraparte_proprietarios': ['PERSON_021'], 'valor': 3100.0, 'conta': 'ACCOUNT_005', 'direcao': 'recebida', 'tx_id': 'TX_00455', 'contraparte_conta': 'ACCOUNT_021', 'timestamp': neo4j.time.DateTime(2026, 7, 20, 9, 18, 0, 0, tzinfo=<UTC>)}, {'moeda': 'USD', 'contraparte_proprietarios': ['PERSON_022'], 'valor': 2600.0, 'conta': 'ACCOUNT_005', 'direcao': 'recebida', 'tx_id': 'TX_00456', 'contraparte_conta': 'ACCOUNT_022', 'timestamp': neo4j.time.DateTime(2026, 7, 20, 9, 37, 0, 0, tzinfo=<UTC>)}, {'moeda': 'USD', 'contraparte_proprietarios': ['PERSON_023'], 'valor': 3000.0, 'conta': 'ACCOUNT_005', 'direcao': 'recebida', 'tx_id': 'TX_00457', 'contraparte_conta': 'ACCOUNT_023', 'timestamp': neo4j.time.DateTime(2026, 7, 20, 9, 55, 0, 0, tzinfo=<UTC>)}]>
+
+SÍNTESE INVESTIGATIVA
+---------------------
+### 1. Evidências observadas
+- **Pessoa:** Ana Beatriz Alves — `PERSON_005`
+- **País:** México
+- **Segmento:** Alta renda
+- **Entidade de risco diretamente relacionada:** `RISK_003`, categoria **“Sanctions reference”**, fonte **OFAC**.
+- **Conta:** `ACCOUNT_005`, em USD, tipo Pessoa física.
+
+### 2. Contexto relacional
+- Utiliza o dispositivo móvel `DEVICE_001`, também associado a `PERSON_003`, `PERSON_004`, `PERSON_043`, `PERSON_065` e `PERSON_077`.
+- Utiliza o dispositivo móvel `DEVICE_025`, também associado a `PERSON_006`, `PERSON_032`, `PERSON_052`, `PERSON_074`, `PERSON_079`, `PERSON_095` e `PERSON_100`.
+- O compartilhamento de dispositivos é uma conexão observada no grafo e, isoladamente, não confirma irregularidade.
+
+### 3. Contexto transacional
+Em **20 de julho de 2026**, na conta `ACCOUNT_005`:
+
+**Recebidas:**
+- `TX_00454`: USD 2.800 de `PERSON_020`, às 09:00 UTC.
+- `TX_00455`: USD 3.100 de `PERSON_021`, às 09:18 UTC.
+- `TX_00456`: USD 2.600 de `PERSON_022`, às 09:37 UTC.
+- `TX_00457`: USD 3.000 de `PERSON_023`, às 09:55 UTC.
+
+Total recebido observado: **USD 11.500**.
+
+**Enviada:**
+- `TX_00458`: USD 10.700 para a conta `ACCOUNT_105`, cujo proprietário identificado é `COMPANY_005`, às 10:35 UTC.
+
+### 4. Motivos para revisão
+- Existência de uma entidade diretamente relacionada classificada como **“Sanctions reference”**, com fonte OFAC.
+- Compartilhamento de dois dispositivos móveis com outras pessoas registradas no grafo.
+- Quatro transferências recebidas de pessoas distintas em intervalo curto, seguidas de uma transferência enviada para uma empresa.
+
+Esses elementos justificam revisão humana e diligência adicional, mas não constituem, isoladamente, prova de atividade ilícita.
+
+### 5. Limitações
+- O contexto não informa a natureza ou o motivo econômico das transferências.
+- Não há detalhes sobre a identidade ou o fundamento específico da referência OFAC `RISK_003`.
+- O compartilhamento de dispositivos não demonstra, por si só, relação operacional ou irregularidade.
+- Não foram utilizados dados de *ground truth* ou `pattern_id`; nenhuma inferência além das evidências recuperadas foi realizada.

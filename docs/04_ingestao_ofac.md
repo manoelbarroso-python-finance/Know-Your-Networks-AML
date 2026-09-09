@@ -1,63 +1,46 @@
-# Ingestão da OFAC — baseline oficial de sanções
+# 4. Ingestão e estruturação da OFAC
 
-## 1. Objetivo
+## 4.1 Objetivo
 
-A primeira ingestão de dados reais do projeto utilizará a lista de **Specially Designated Nationals and Blocked Persons (SDN)**, publicada pela **Office of Foreign Assets Control (OFAC)**.
+A primeira fonte externa real incorporada ao projeto foi a **Specially Designated Nationals and Blocked Persons List (SDN)**, publicada pela **Office of Foreign Assets Control (OFAC)**.
 
-A escolha da OFAC como primeira fonte tem um propósito metodológico.
+A escolha teve um objetivo metodológico: estabelecer um baseline diretamente a partir de uma **fonte oficial**, antes da aplicação dos métodos próprios de normalização, entity resolution e avaliação de robustez.
 
-Antes de utilizar agregadores, mecanismos externos de matching ou bases enriquecidas, o projeto estabelecerá um **baseline construído diretamente a partir de uma fonte oficial**.
+Nesta implementação, a OFAC desempenha três funções principais:
 
-Isso permitirá posteriormente comparar:
+1. fornecer registros oficiais para screening;
+2. disponibilizar aliases e atributos auxiliares para os experimentos de entity resolution;
+3. permitir a construção de benchmarks rastreáveis a partir de diferentes representações associadas ao mesmo registro.
 
-```text
-Fonte oficial
-     ↓
-normalização própria
-     ↓
-matching próprio
-     ↓
-agregadores e APIs especializadas
+O objetivo desta etapa foi transformar o XML oficial em estruturas tabulares validadas e adequadas às análises posteriores, preservando a ligação com o dado de origem.
 
-2. Dataset selecionado
+## 4.2 Dataset e formato selecionado
 
-Será utilizado inicialmente o arquivo:
+O arquivo utilizado nesta etapa foi:
 
 SDN_ADVANCED.XML
 
-O formato avançado foi escolhido porque mantém os dados essenciais da SDN List e disponibiliza uma estrutura mais rica de metadados.
+O formato XML avançado foi selecionado por preservar uma estrutura hierárquica mais rica do que os formatos tabulares simplificados, incluindo informações relacionadas a:
 
-Isso é especialmente relevante para um projeto que pretende explorar:
+- nomes principais;
+- aliases;
+- partes componentes dos nomes;
+- tipos e subtipos de entidade;
+- atributos de identidade;
+- documentos e identificadores;
+- programas e referências auxiliares.
 
--aliases;
--diferentes representações de nomes;
--identificadores;
--atributos associados a entidades;
--relações entre registros;
--screening;
--entity resolution.
+Arquivos CSV seriam suficientes para diversas aplicações de screening tabular. Entretanto, o XML avançado foi mais adequado aos objetivos deste estudo por permitir investigar a estrutura subjacente dos registros antes de convertê-los em tabelas analíticas.
 
-O uso do XML também preserva uma estrutura hierárquica que poderá ser explorada antes da transformação para formatos tabulares ou para o Neo4j.
+A escolha não implica superioridade geral do XML, mas adequação ao problema investigado.
 
-3. Por que não começar pelo CSV
+## 4.3 Aquisição, preservação e proveniência
 
-A OFAC também disponibiliza arquivos CSV e outros formatos mais simples.
+O arquivo obtido diretamente da OFAC foi armazenado em:
 
-Esses formatos são adequados para diversos tipos de integração e seriam suficientes para uma análise puramente tabular.
-
-Entretanto, este projeto pretende avaliar não apenas os registros principais, mas também atributos e relacionamentos associados a cada entidade.
-
-Por isso, o XML avançado será utilizado como primeira fonte.
-
-Isso não significa que o CSV seja inferior para todas as aplicações.
-
-A decisão reflete apenas os objetivos específicos deste projeto.
-
-4. Separação entre dado bruto e dado processado
-
-O arquivo obtido diretamente da OFAC será armazenado em:
-
+```text
 data/raw/ofac/
+```
 
 Essa camada deverá preservar o dado original sem alterações.
 
@@ -65,8 +48,8 @@ Posteriormente, os registros extraídos e normalizados serão gravados em:
 
 data/processed/
 
-O fluxo será:
-
+O fluxo implementado foi:
+```text
 OFAC
   ↓
 SDN_ADVANCED.XML
@@ -78,304 +61,209 @@ parser
 normalização
   ↓
 data/processed/
+```
+Download e transformação permanecem separados, permitindo repetir a aquisição sem executar automaticamente o parser e revisar as transformações sem alterar o arquivo de origem.
 
-O dado bruto não deverá ser modificado pelo processo de transformação.
+A ingestão também utiliza uma estrutura própria de proveniência, com registro temporal em UTC, destinada a preservar a rastreabilidade da **origem dos dados**
 
-Caso uma nova versão seja obtida, sua coleta deverá ser rastreável.
+### 4.3.1 Proveniência
 
-5. Proveniência
+A origem dos dados foi preservada como parte do processo de ingestão, permitindo distinguir o registro obtido da fonte das transformações realizadas posteriormente.
 
-A ingestão deverá registrar informações suficientes para identificar a origem do dado.
+A implementação registra informações necessárias para rastrear a origem e o momento de obtenção dos dados, incluindo:
 
-Entre elas:
+- fonte;
+- dataset;
+- arquivo de origem;
+- momento da coleta;
+- identificador do registro, quando disponível.
 
-fonte;
-dataset;
-momento da coleta;
-arquivo original;
-identificador do registro.
+A estrutura de proveniência utiliza timestamps em UTC e permanece separada das transformações analíticas posteriores.
 
-Posteriormente poderão ser adicionados:
+O objetivo é permitir responder questões como:
 
-hash do arquivo;
-data de publicação;
-versão do schema.
+1. de onde veio determinado registro;
+2. quando ele foi obtido;
+3. qual arquivo de origem foi utilizado;
+4. como o registro de origem se relaciona aos artefatos processados posteriormente.
 
-Isso permitirá responder perguntas como:
+## 4.4 Inspeção e parsing do XML
 
-De onde veio este registro?
+Antes da transformação tabular, a estrutura do XML foi inspecionada para identificar os elementos efetivamente utilizados pela OFAC.
 
-Quando ele foi coletado?
+Entre os principais componentes observados estão:
 
-Qual versão do dataset foi utilizada?
+```text
+DistinctParty
+    ↓
+Profile
+    ↓
+Identity
+    ↓
+Alias / DocumentedName
+    ↓
+NamePartValue
+```
+A estrutura também contém Feature, utilizado para representar atributos adicionais de identidade.
 
-Dois experimentos utilizaram exatamente o mesmo snapshot?
+A inspeção anterior ao parser evitou impor ao arquivo uma estrutura tabular preconcebida e permitiu definir as tabelas a partir do modelo realmente disponibilizado pela fonte.
 
-6. Integridade do arquivo
+O parser foi então desenvolvido para extrair as entidades e suas diferentes representações nominais, mantendo os identificadores necessários para reconstruir sua origem.
 
-Uma etapa posterior poderá calcular um hash criptográfico SHA-256 do arquivo bruto.
+## 4.5 Resultados da estruturação
+
+O processamento do `SDN_ADVANCED.XML` resultou em:
+
+| Estrutura | Registros |
+|---|---:|
+| Entidades OFAC | **19.199** |
+| Nomes e aliases | **49.652** |
+
+As entidades foram classificadas em três grupos principais:
+
+| Tipo | Registros |
+|---|---:|
+| Entity | **9.854** |
+| Individual | **7.479** |
+| Transport | **1.866** |
+
+A presença de múltiplos nomes por entidade é particularmente importante para o entity resolution, pois permite construir pares positivos utilizando diferentes representações oficialmente associadas ao mesmo registro.
+
+Os arquivos estruturados foram mantidos na camada privada de processamento, evitando a redistribuição desnecessária do dataset derivado completo no repositório público.
+
+## 4.6 Nomes, aliases e complexidade nominal
+
+A análise dos registros mostrou que uma mesma entidade pode possuir múltiplas representações nominais.
+
+Entre os tipos de alias mais frequentes estavam:
+
+- `Name`;
+- `A.K.A.` — *also known as*;
+- `F.K.A.` — *formerly known as*;
+- `N.K.A.` — *now known as*.
+
+Também foram observados diferentes sistemas de escrita, com predominância do alfabeto latino e presença de registros em scripts como cirílico e árabe.
+
+A complexidade nominal variou entre os tipos de entidade. Indivíduos e organizações apresentaram múltiplos nomes e aliases, enquanto transportes tenderam a possuir menor quantidade de representações.
+
+Esse resultado reforça por que uma estratégia exclusivamente baseada em correspondência textual exata é insuficiente para o problema de identidade.
+
+## 4.7 Atributos auxiliares de identidade
+
+Além dos nomes, foram extraídos atributos potencialmente úteis para a desambiguação dos candidatos.
+
+Os principais foram:
+
+- data de nascimento;
+- local de nascimento;
+- nacionalidade;
+- cidadania;
+- localização;
+- documentos e identificadores.
+
+A disponibilidade desses campos varia conforme o tipo de entidade.
+
+Para os **7.479 registros classificados como `Individual`**, a cobertura observada foi aproximadamente:
+
+| Atributo | Cobertura |
+|---|---:|
+| Data de nascimento | **98,65%** |
+| Nacionalidade | **74,49%** |
+| Local de nascimento | **63,62%** |
+| Cidadania | **13,97%** |
+
+Essa heterogeneidade é metodologicamente importante: o modelo de matching não pode assumir que todos os candidatos possuem o mesmo conjunto de atributos.
+
+Também é importante distinguir **ausência de informação** de **evidência incompatível**: um atributo não observado não deve ser interpretado automaticamente como divergência entre identidades.
+
+A disponibilidade desigual desses campos motivou posteriormente os testes de robustez com **missingness** e divergências contextuais.
+
+### 4.7.1 Documentos e identificadores
+
+Também foram extraídos documentos associados às entidades.
+
+A cobertura observada foi aproximadamente:
+
+| Tipo | Entidades com documentação |
+|---|---:|
+| Individual | **56,93%** |
+| Entity | **79,73%** |
+| Transport | **81,83%** |
+
+Entre os tipos encontrados estavam passaportes, documentos nacionais de identificação, registros fiscais, números empresariais e identificadores específicos de embarcações.
+
+Documentos constituem evidências potencialmente fortes de identidade, mas sua ausência não implica falta de correspondência. Essa distinção também foi testada posteriormente nos experimentos de matching.
+
+## 4.8 Uso da OFAC no benchmark de entity resolution
+
+Os aliases associados oficialmente à mesma entidade foram utilizados na construção dos pares positivos do benchmark.
 
 Conceitualmente:
 
-SDN_ADVANCED.XML
-        ↓
-      SHA-256
-        ↓
-hash do snapshot utilizado
-
-O objetivo não será criptografar o dataset.
-
-O hash funcionará como uma impressão digital do arquivo, permitindo identificar precisamente o snapshot utilizado em determinado experimento.
-
-Essa informação será especialmente útil para:
-
-reprodutibilidade;
-auditoria;
-comparação entre versões;
-documentação dos experimentos.
-
-7. Primeira etapa de ingestão
-
-A ingestão será dividida deliberadamente em duas fases.
-
-7.1 Fase 1 — download
-
-Responsabilidades:
-
-acessar a fonte oficial;
-verificar a resposta HTTP;
-salvar o arquivo bruto;
-registrar data e hora da coleta;
-preservar o conteúdo recebido.
-
-Nenhum parsing será realizado nesta fase.
-
-7.2 Fase 2 — interpretação
-
-Somente depois de confirmar que o arquivo foi obtido corretamente será iniciada a análise da estrutura XML.
-
-Essa separação evita misturar:
-
-aquisição
-
-com:
-
-transformação
-
-e torna o pipeline mais fácil de testar, compreender e auditar.
-
-8. Princípio de preservação
-
-O arquivo original será tratado como evidência daquilo que foi efetivamente disponibilizado pela fonte no momento da coleta.
-
-Transformações como:
-
--normalização de nomes;
--extração de aliases;
--conversão de datas;
--classificação de atributos;
--construção de tabelas;
--preparação de entidades para o grafo;
-
-ocorrerão apenas em etapas posteriores.
-
-Assim, sempre será possível retornar ao dado original caso seja necessário revisar uma transformação.
-
-Esse princípio estabelece três camadas distintas:
-
-RAW
- ↓
-PROCESSADO
- ↓
-ANALÍTICO
-
-Cada camada terá uma função específica e não deverá modificar retroativamente a camada anterior.
-
-9. Relação futura com o Neo4j
-
-A ingestão da OFAC deverá produzir posteriormente entidades que possam ser representadas aproximadamente como:
-
-(:EntidadeOFAC)
-      │
-      ├── POSSUI_ALIAS
-      │
-      ├── POSSUI_ENDERECO
-      │
-      ├── POSSUI_IDENTIFICADOR
-      │
-      └── ASSOCIADA_A_PROGRAMA
-
-Essa representação ainda não será criada nesta etapa.
-
-Primeiro será necessário compreender e validar a estrutura dos registros de origem.
-
-A modelagem no Neo4j será definida a partir das relações efetivamente observadas nos dados e não apenas de uma estrutura previamente imaginada.
-
-10. Relação futura com entity resolution
-
-A OFAC também fornecerá parte do ground truth utilizado posteriormente para avaliar os métodos de matching.
-
-A estrutura poderá permitir construir casos como:
-
+```text
 nome principal
       ↓
 alias conhecido
       ↓
-mesma entidade oficial
-
-Como diferentes nomes estão associados oficialmente ao mesmo registro, eles poderão funcionar como exemplos positivos para testes de entity resolution.
-
-Esses pares poderão ser utilizados posteriormente para comparar:
-
--exact matching;
--nome normalizado;
--fuzzy matching;
--matching multivariado;
--OpenSanctions.
-
-Além dos aliases existentes, poderão ser introduzidas perturbações sintéticas controladas, como:
-
--remoção de acentos;
--alteração de ordem;
--retirada de hífens;
--abreviações;
--pequenas alterações tipográficas;
--transliterações.
-
-Dessa maneira, será possível medir objetivamente a robustez dos diferentes métodos.
-
-11. Relação com a proveniência do projeto
-
-Os objetos e registros produzidos a partir da OFAC deverão manter uma ligação explícita com a fonte original.
-
-Conceitualmente:
-
-registro OFAC
+mesma entidade OFAC
       ↓
-proveniência
+par positivo
+```
+Os pares positivos são, portanto, derivados de diferentes representações associadas ao **mesmo registro dentro da própria OFAC**.
+
+Essa construção oferece ground truth controlado para o experimento, mas não equivale a uma validação externa com registros independentes de onboarding. Essa limitação é considerada posteriormente na avaliação dos resultados.
+
+## 4.9 Separação entre dados reais e experimentos em grafo
+
+Os registros reais derivados da OFAC são utilizados nas etapas de screening e entity resolution.
+
+A rede pública utilizada posteriormente nos experimentos Neo4j emprega **entidades e referências de risco sintéticas**, evitando apresentar pessoas reais como objetos de uma investigação AML fictícia.
+
+Essa separação preserva a utilidade metodológica da fonte oficial sem misturar registros reais de sanções com cenários transacionais artificiais.
+
+## 4.10 Proveniência, evidência e interpretação
+
+A informação original da OFAC permanece conceitualmente separada dos resultados produzidos pelo pipeline.
+
+Um registro presente na fonte constitui um dado observado. Normalização, matching e scores acrescentam novas camadas analíticas, mas não alteram a natureza ou a proveniência do registro original.
+
+Da mesma forma, um score elevado representa evidência de correspondência de identidade dentro do método utilizado; não constitui, isoladamente, uma decisão de risco ou de compliance.
+
+```text
+registro da fonte
       ↓
 normalização
       ↓
-matching
+candidato de matching
       ↓
-entidade no grafo
+score / evidências coincidentes
       ↓
-resultado investigativo
+priorização
+      ↓
+revisão humana
+```
+## 4.11 Síntese da ingestão
 
-Essa cadeia será importante posteriormente quando o projeto incorporar:
+A etapa de ingestão estabeleceu o princípio metodológico utilizado no restante do projeto:
 
--Neo4j;
--Graph Analytics;
--GraphRAG;
--geração assistida por LLM.
+> **primeiro compreender e preservar o dado; depois transformá-lo; somente então analisá-lo.**
 
-O objetivo será permitir que uma conclusão ou afirmação investigativa possa ser rastreada até a informação que lhe deu origem.
+A estruturação da OFAC produziu uma base com **19.199 entidades e 49.652 nomes e aliases**, enriquecida com atributos de identidade e documentação capazes de alimentar os experimentos posteriores.
 
-12. Separação entre dado e interpretação
+O resultado desta etapa pode ser resumido como:
 
-A presença de uma entidade em uma lista oficial será tratada como uma característica proveniente da fonte, e não como uma inferência criada pelo projeto.
-
-Da mesma forma, uma correspondência potencial encontrada pelo pipeline será mantida separada da informação original.
-
-Por exemplo:
-
-registro_original = OFAC
-
-não é a mesma coisa que:
-
-match_confirmado = True
-
-O pipeline deverá distinguir:
-
--registro original;
--candidato encontrado;
--score de matching;
--atributos coincidentes;
--atributos divergentes;
--interpretação;
--revisão humana.
-
-Essa separação será fundamental para reduzir a confusão entre fonte, evidência e decisão.
-
-13. Critério de sucesso desta etapa
-
-A primeira ingestão será considerada bem-sucedida quando:
-
-o arquivo oficial puder ser obtido de forma reproduzível;
-o arquivo bruto for salvo sem transformação;
-a origem e o momento da coleta forem registrados;
-o pipeline conseguir detectar erros HTTP;
-nenhuma informação do arquivo for silenciosamente alterada durante o download;
-o snapshot utilizado puder ser posteriormente identificado;
-a etapa de download puder ser executada independentemente do parser.
-
-Somente depois dessas validações o XML será interpretado.
-
-14. Perguntas que esta etapa deverá responder
-
-Antes de avançar para o parsing, será necessário responder:
-
-Aquisição
-
-O arquivo oficial pode ser obtido de forma automatizada e reproduzível?
-
-Integridade
-
-É possível verificar se o arquivo utilizado em dois experimentos é exatamente o mesmo?
-
-Proveniência
-
-Conseguimos registrar claramente quando, onde e como o dado foi obtido?
-
-Separação de responsabilidades
-
-Download e transformação estão suficientemente separados para permitir auditoria independente?
-
-Reprodutibilidade
-
-Outra pessoa poderia repetir a coleta e compreender qual snapshot foi utilizado?
-
-15. Próxima etapa
-
-Após a validação do download, o projeto analisará a estrutura interna do XML para identificar:
-
-registros principais;
-nomes;
-aliases;
-tipos de entidade;
-identificadores;
-endereços;
-programas de sanções;
-datas;
-jurisdições;
-demais atributos úteis.
-
-Somente depois dessa inspeção será definida a estrutura tabular utilizada nas análises seguintes.
-
-O fluxo esperado será:
-
-DOWNLOAD
-   ↓
-SNAPSHOT BRUTO
-   ↓
-VALIDAÇÃO
-   ↓
-INSPEÇÃO DO XML
-   ↓
-PARSER
-   ↓
-NORMALIZAÇÃO
-   ↓
-ENTITY RESOLUTION
-
-Essa decisão evita impor ao dataset uma estrutura preconcebida antes de compreender o modelo fornecido pela fonte.
-
-16. Princípio metodológico
-
-Esta primeira ingestão estabelece um princípio que será repetido ao longo do projeto:
-
-primeiro compreender e preservar o dado; depois transformá-lo; somente então analisá-lo.
-
-Esse princípio será aplicado posteriormente às demais fontes externas e às relações carregadas no Neo4j.
-
-A sofisticação das etapas posteriores — incluindo graph analytics e GraphRAG — dependerá diretamente da qualidade, rastreabilidade e consistência das informações produzidas nesta camada inicial.
+```text
+OFAC SDN Advanced
+        ↓
+inspeção estrutural
+        ↓
+parser validado
+        ↓
+entidades + aliases
+        ↓
+atributos de identidade
+        ↓
+documentos
+        ↓
+benchmark de entity resolution
+```

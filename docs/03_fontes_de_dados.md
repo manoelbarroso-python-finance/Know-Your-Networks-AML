@@ -1,656 +1,210 @@
-# Fontes de dados e inteligência externa
+# 3. Fontes de dados e definição do escopo
 
-1. Objetivo
+## 3.1 Objetivo
 
-A qualidade de um processo de KYC, screening ou investigação financeira depende não apenas dos métodos analíticos utilizados, mas também da qualidade, cobertura, atualidade e rastreabilidade das informações consultadas.
+A qualidade de processos de KYC, screening e investigação financeira depende não apenas dos métodos analíticos utilizados, mas também da qualidade, cobertura, atualidade e rastreabilidade das informações consultadas.
 
-Este projeto utilizará uma combinação de:
+Durante o desenho do projeto foram avaliadas diferentes fontes públicas e especializadas. Entretanto, a implementação final adotou um escopo deliberadamente controlado, baseado principalmente em:
 
-- fontes oficiais;
-- bases públicas;
-- APIs especializadas;
-- dados corporativos;
-- dados sintéticos e semissintéticos;
-- fontes complementares de inteligência externa.
+- **OFAC SDN Advanced**, como fonte externa oficial para sanções, aliases, atributos de identidade e documentos;
+- **dados derivados da própria OFAC**, utilizados na construção dos benchmarks de entity resolution;
+- **dados sintéticos**, utilizados para os experimentos de rede e comportamento transacional.
 
-A intenção não é maximizar o número de bases consultadas.
+A redução do número de fontes foi uma decisão metodológica. O objetivo principal passou a ser avaliar com profundidade as diferentes camadas analíticas do pipeline, evitando atribuir ganhos de desempenho à simples acumulação de bases externas.
 
-Cada fonte deverá responder a uma necessidade concreta dentro da investigação.
+## 3.2 Critérios para seleção das fontes
 
-2. Princípios para seleção das fontes
+As fontes foram avaliadas segundo os seguintes critérios:
 
-Uma fonte será incorporada quando apresentar valor em pelo menos uma das seguintes dimensões:
+1. **autoridade e proveniência** da informação;
+2. **cobertura** e qualidade dos registros;
+3. disponibilidade de **aliases e identificadores auxiliares**;
+4. acesso por arquivo estruturado ou API;
+5. utilidade para **entity resolution** e screening;
+6. capacidade de integração ao pipeline;
+7. reprodutibilidade;
+8. custo e complexidade proporcionais ao benefício esperado.
 
-2.1 autoridade da informação;
-2.2 cobertura;
-2.3 qualidade dos identificadores;
-2.4 capacidade de integração por API ou arquivo estruturado;
-2.5 utilidade para entity resolution;
-2.6 capacidade de revelar relacionamentos;
-2.7 reprodutibilidade;
-2.8 custo compatível com a proposta experimental.
+A inclusão de uma nova fonte foi condicionada a uma pergunta objetiva:
 
-Fontes pagas não serão automaticamente excluídas.
+> **Que informação adicional essa fonte fornece e como esse ganho pode ser medido?**
 
-Um custo reduzido poderá ser aceito quando houver ganho mensurável de cobertura, qualidade ou capacidade investigativa.
+Esse princípio foi utilizado para limitar o escopo final do estudo.
 
-O objetivo será sempre justificar:
+## 3.3 Fontes avaliadas e escopo final
 
-**o que essa fonte acrescentou que não estava disponível anteriormente?**
+Durante o planejamento foram consideradas diferentes fontes capazes de ampliar cobertura, contexto regulatório ou relações corporativas.
 
-3. Fontes inicialmente selecionadas:
+| Fonte | Avaliada | Implementada | Papel no estudo final |
+|---|---:|---:|---|
+| OFAC SDN Advanced | Sim | **Sim** | Fonte oficial de sanções, aliases, identidade e documentos |
+| OpenSanctions | Sim | Não | Extensão futura para agregação e matching externo |
+| ONU Consolidated List | Sim | Não | Extensão futura para diversidade jurisdicional |
+| PEP — Portal da Transparência | Sim | Não | Possível camada futura de contexto brasileiro |
+| CEIS/CNEP | Sim | Não | Possível camada futura de integridade e terceiros |
+| GLEIF | Sim | Não | Possível enriquecimento corporativo |
+| GDELT / mídia adversa | Sim | Não | Possível camada futura de contexto aberto |
+| Dados sintéticos | — | **Sim** | Rede, ground truth e transações controladas |
 
-**Fonte**  **função principal**  **forma de acesso**  **custo**   **papel inicial**
+A tabela distingue explicitamente **fontes consideradas** de **fontes efetivamente utilizadas**.
 
-Open       Screening e                API           Pay-as-      Principal benchmark
-Santions   entity matching                          you-go       externo
+A decisão de não incorporar todas as fontes avaliadas evita que o experimento confunda o efeito dos métodos analíticos com o aumento indiscriminado de informação disponível.
 
-OFAC        Sanções oficiais       Arquivos        Gratuito      Ground truth oficial
-            dos EUA              Estruturados
+## 3.4 Fonte externa implementada: OFAC SDN Advanced
 
-ONU           Sanções         XML/Dados oficiais   Gratuito      Validação internacional
-            Multilaterais
+A principal fonte externa utilizada foi a **Specially Designated Nationals and Blocked Persons List (SDN)** da Office of Foreign Assets Control (OFAC), em sua versão estruturada `SDN_ADVANCED.XML`.
 
-Portal da     Pessoas expostas    Dados abertos    Gratuito      Contexto Brasileiro
-Transparência  Politicamente
-PEP
+A escolha da OFAC oferece três vantagens para o experimento:
 
-Portal da     Sanções ADM       API/Dados abertos  Gratuito      integridade e riscos
-Transparência                                                        de terceiros
-CEIS/CNEP
+1. **autoridade da fonte**, por se tratar da publicação oficial do órgão responsável;
+2. riqueza estrutural, incluindo nomes, aliases, atributos de identidade e documentos;
+3. possibilidade de construir benchmarks controlados de entity resolution a partir de diferentes representações associadas ao mesmo registro.
 
-GLEIF        Identificação e         API           Gratuito      Enriquecimento empresarial
-          relações corporativas
+A lista não é tratada como uma classificação genérica de risco. Ela funciona como uma **referência oficial de screening** dentro do escopo específico do experimento.
 
-GDELT       Midia e contexto   API/Dados abertos   Gratuito      Camada experimental posterior
-               Externos
+### 3.4.1 Uso em entity resolution
 
-A utilização de todas essas fontes em uma mesma análise não será obrigatória.
+Aliases e diferentes nomes associados à mesma entidade foram utilizados para construir **pares positivos derivados da própria fonte oficial**.
 
-O pipeline será desenvolvido por etapas.
+Esses pares representam diferentes formas nominais vinculadas ao mesmo identificador OFAC e funcionam como ground truth intrafonte para o benchmark de entity resolution.
 
-4. OpenSanctions
-4.1 Papel no projeto
+Essa estratégia permite avaliar se diferentes representações de um mesmo registro oficial continuam sendo reconhecidas após normalização e matching.
 
-O OpenSanctions será utilizado como uma das principais referências externas para:
+Os pares negativos foram construídos separadamente, incluindo **hard negatives** com elevada similaridade nominal, evitando que o benchmark fosse artificialmente fácil.
 
--pessoas sancionadas;
--empresas sancionadas;
--Pessoas Expostas Politicamente;
--aliases;
--identificadores;
--entidades relacionadas;
--outras categorias de interesse para compliance.
+Dessa forma, a OFAC desempenha dois papéis distintos:
 
-O principal objetivo não será apenas consultar registros.
+```text
+Fonte oficial
+     ↓
+Screening
 
-O OpenSanctions será utilizado como benchmark de entity resolution e screening.
+e
 
-4.2 Endpoint de matching
+Registros + aliases
+     ↓
+Benchmark de entity resolution
+```
 
-Para screening, será utilizado prioritariamente o endpoint:
+## 3.5 Dados sintéticos e ground truth controlado
 
-/match
+Dados sintéticos foram utilizados nas etapas em que informações reais de clientes, contas e transações não seriam apropriadas para publicação.
 
-em vez de uma busca textual simples.
+Foram construídos artificialmente:
 
-A diferença metodológica é importante.
+- pessoas;
+- empresas;
+- contas;
+- dispositivos;
+- endereços;
+- entidades de risco;
+- relacionamentos entre essas entidades;
+- transações financeiras.
 
-Uma pesquisa baseada apenas no nome pode produzir muitos candidatos semelhantes.
+As entidades de risco utilizadas nesses experimentos também são sintéticas. Eventuais referências à OFAC representam apenas a categoria ou origem conceitual do sinal de screening e não correspondem a pessoas ou organizações reais inseridas em cenários AML fictícios.
 
-O matching poderá considerar simultaneamente atributos como:
+A geração controlada permitiu inserir previamente padrões conhecidos de exposição e comportamento transacional.
 
--nome
--data de nascimento
--nacionalidade
--identificador fiscal
--endereço
--tipo de entidade
+Esse ground truth tornou possível avaliar objetivamente se as consultas e regras recuperavam os padrões esperados, sem utilizar informações financeiras ou cadastrais de indivíduos reais.
 
-Isso permitirá comparar:
+O ground truth foi mantido separado dos mecanismos de detecção. Ele é utilizado para **avaliar o resultado**, e não para orientar onde o algoritmo deve procurar.
 
-Exact Match
-    ↓
-Nome normalizado
-    ↓
-Fuzzy matching
-    ↓
-Matching multivariado próprio
-    ↓
-OpenSanctions /match
 
-4.3 Reprodutibilidade do algoritmo
+## 3.6 Proveniência e rastreabilidade
 
-Para experimentos comparativos, o projeto buscará utilizar uma versão identificável do algoritmo de matching.
+O pipeline preserva metadados capazes de identificar a origem e o momento de obtenção dos registros. A implementação inclui uma estrutura específica de proveniência com timestamp em UTC.
 
-Quando disponível, será preferível fixar uma implementação recomendada e estável em vez de utilizar automaticamente uma configuração que possa mudar ao longo do tempo.
+Em conjunto com a organização dos scripts e dos artefatos intermediários, essa estrutura permite rastrear:
 
-A versão ou configuração utilizada deverá ser registrada juntamente com a data do experimento.
+1. de qual fonte determinado registro foi obtido;
+2. quando a coleta foi realizada;
+3. qual arquivo ou dataset originou o dado;
+4. em qual etapa do pipeline determinado artefato foi produzido.
 
-Isso evita que alterações futuras no serviço modifiquem silenciosamente os resultados históricos do benchmark.
+Essa rastreabilidade é particularmente relevante em contextos de compliance, nos quais resultado analítico, transformação metodológica e evidência de origem devem permanecer distinguíveis.
 
-4.4 Controle de custo
+## 3.7 Separação entre dados brutos, processados e públicos
 
-O OpenSanctions será utilizado de maneira seletiva.
+A estrutura do projeto separa diferentes estágios dos dados:
 
-Em vez de enviar indiscriminadamente toda a base para uma API paga, o pipeline poderá executar:
+```text
+data/
+├── raw/
+│   └── dados originais obtidos das fontes
+│
+├── processed/
+│   ├── private/
+│   │   └── resultados derivados que não devem ser publicados
+│   │
+│   └── public/
+│       └── artefatos adequados ao repositório público
+│
+└── synthetic/
+    └── entidades, relações e transações artificiais
+```
 
-normalização local
-        ↓
-filtros iniciais
-        ↓
-matching local
-        ↓
-candidatos relevantes
-        ↓
-OpenSanctions API
+## 3.8 Separação entre fonte, sinal, evidência e decisão
 
-Essa arquitetura permite utilizar uma API especializada apenas onde ela realmente agrega informação.
+A arquitetura preserva uma distinção fundamental entre a origem da informação e sua interpretação investigativa.
 
-Também cria um experimento adicional:
+A presença de um registro em uma fonte oficial pode gerar um **sinal de screening**, mas esse sinal não deve ser automaticamente transformado em uma conclusão sobre risco ou irregularidade.
 
-**Quanto o serviço especializado melhora o resultado em relação ao nosso pipeline local?**
+Da mesma forma, conexões observadas no grafo e padrões identificados nas transações constituem elementos de análise cujo significado depende do contexto.
 
-5. OFAC
-5.1 Papel no projeto
+O fluxo conceitual utilizado no projeto é:
 
-A Office of Foreign Assets Control (OFAC) será utilizada como uma fonte oficial de sanções.
-
-Serão consideradas principalmente:
-
-Specially Designated Nationals and Blocked Persons List — SDN;
-Consolidated Non-SDN List.
-
-Os dados estruturados permitem construir uma base de referência diretamente a partir da autoridade responsável pela publicação.
-
-5.2 Por que manter OFAC e OpenSanctions
-
-As duas fontes não serão tratadas como redundantes.
-
-A OFAC representa:
-
-fonte oficial
-
-enquanto o OpenSanctions representa:
-
-camada agregada + normalização + matching
-
-Essa diferença permitirá testar uma pergunta importante:
-
-Qual é o valor acrescentado por uma camada especializada de agregação e entity matching em relação ao consumo direto da lista oficial?
-
-5.3 Utilização em entity resolution
-
-Registros oficiais contendo aliases ou diferentes formas de identificação poderão contribuir para a construção de pares positivos.
-
-Exemplo conceitual:
-
-Registro oficial:
-ENTITY_001
-
-Alias A
-Alias B
-Alias C
-
-Como os aliases pertencem ao mesmo registro oficial, eles poderão servir como exemplos controlados de diferentes representações da mesma entidade.
-
-Também poderão ser criadas perturbações sintéticas adicionais:
-
-remoção de hífen
-remoção de acento
-abreviação
-alteração de ordem
-erro tipográfico
-transliteração
-
-Isso permitirá medir objetivamente a robustez do matching.
-
-6. Lista Consolidada das Nações Unidas
-
-A lista consolidada do Conselho de Segurança das Nações Unidas será considerada como uma segunda referência oficial internacional.
-
-Seu papel será principalmente:
-
--ampliar a diversidade jurisdicional;
--testar diferentes formatos de nomes e aliases;
--validar o comportamento do pipeline fora de uma única fonte nacional;
--fornecer casos adicionais para entity resolution.
-
-A ONU será tratada como fonte oficial independente e não apenas como informação herdada de um agregador.
-
-7. Pessoas Expostas Politicamente — Brasil
-7.1 Fonte
-
-O Portal da Transparência disponibiliza dados abertos relacionados a Pessoas Expostas Politicamente.
-
-Essa fonte permitirá introduzir uma dimensão brasileira ao projeto.
-
-7.2 Interpretação
-
-A presença de uma pessoa em um cadastro de PEP não representa evidência de irregularidade.
-
-No modelo investigativo:
-
-PEP ≠ irregularidade
-
-A condição será representada como um atributo relevante para diligência e contexto.
-
-Exemplo:
-
-(:Pessoa)-[:POSSUI_CLASSIFICACAO]->(:PEP)
-
-e não:
-
-(:Pessoa)-[:COMETEU]->(:Irregularidade)
-
-7.3 Proteção dos identificadores
-
-A base pública pode conter identificadores pessoais.
-
-O projeto não publicará esses identificadores quando não forem indispensáveis para compreender o experimento.
-
-A camada pública do repositório deverá utilizar:
-
-PERSON_0001
-PERSON_0002
-PERSON_0003
-
-ou outro processo de pseudonimização definido posteriormente.
-
-A identidade real não será necessária para demonstrar o funcionamento da análise.
-
-8. CEIS e CNEP
-8.1 CEIS
-
-O Cadastro Nacional de Empresas Inidôneas e Suspensas reúne registros de pessoas físicas ou jurídicas sujeitas a determinadas sanções administrativas.
-
-8.2 CNEP
-
-O Cadastro Nacional de Empresas Punidas reúne registros relacionados a sanções aplicadas a pessoas jurídicas.
-
-8.3 Papel no projeto
-
-Essas fontes não serão tratadas automaticamente como listas AML.
-
-Elas servirão como exemplos de:
-
--risco de integridade;
--sanções administrativas;
--risco de terceiros;
--relacionamentos empresariais potencialmente relevantes.
-
-No grafo, poderão gerar estruturas como:
-
-(:Empresa)-[:RECEBEU_SANCAO]->(:SancaoAdministrativa)
-
-ou:
-
-(:Pessoa)-[:ASSOCIADA_A]->(:RegistroAdministrativo)
-
-8.4 API versus download
-
-O projeto poderá demonstrar as duas estratégias.
-
-Consulta por API
-
-Adequada para:
-
--consultas pontuais;
--integração programática;
--demonstração do pipeline.
--Dataset completo
-
-Adequado para:
-
--grandes volumes;
--análises locais;
--reprodutibilidade;
--redução do número de chamadas.
-
-A escolha será feita de acordo com o experimento.
-
-9. GLEIF
-9.1 Identificação de entidades jurídicas
-
-A Global Legal Entity Identifier Foundation será utilizada para enriquecer empresas que possuam Legal Entity Identifier — LEI.
-
-A informação poderá incluir:
-
-LEI;
-nome legal;
-jurisdição;
-endereço;
-situação do registro;
-identificadores relacionados.
-
-9.2 Relações corporativas
-
-Um dos principais interesses será a camada de relacionamentos corporativos.
-
-Exemplo:
-
-Empresa A
-   │
-   ├── controladora direta → Empresa B
-   │
-   └── controladora final → Empresa C
-
-Isso poderá ser convertido diretamente em relações do Neo4j:
-
-(:Empresa)-[:CONTROLADA_DIRETAMENTE_POR]->(:Empresa)
-
-(:Empresa)-[:CONTROLADA_EM_ULTIMA_INSTANCIA_POR]->(:Empresa)
-
-Essa camada será particularmente relevante para a ideia de Know Your Networks.
-
-9.3 Limitação
-
-Nem toda empresa possui LEI.
-
-Portanto, ausência de registro na GLEIF não deverá ser interpretada como ausência ou inexistência da empresa.
-
-GLEIF será uma fonte de enriquecimento, não um cadastro corporativo universal.
-
-10. Mídia adversa — camada experimental
-
-Mídia adversa apresenta um desafio diferente das listas estruturadas.
-
-Uma notícia pode representar:
-
-mera menção;
-alegação;
-investigação;
-denúncia formal;
-decisão administrativa;
-condenação;
-absolvição;
-arquivamento.
-
-Portanto:
-
-notícia encontrada ≠ fato comprovado
-
-10.1 GDELT
-
-O GDELT poderá ser avaliado como fonte gratuita para descoberta inicial de notícias e contexto.
-
-Seu valor potencial está na capacidade de pesquisar grande volume de cobertura jornalística internacional.
-
-Entretanto, os resultados apresentam riscos importantes:
-
-homônimos;
-duplicações;
-diferentes níveis de qualidade editorial;
-associação incorreta entre pessoa e matéria;
-ausência de contexto jurídico;
-eventos antigos ou desatualizados.
-
-Por isso, essa camada não será utilizada inicialmente como ground truth.
-
-10.2 Estratégia investigativa
-
-Uma arquitetura possível será:
-
-entidade
-   ↓
-screening estruturado
-   ↓
-sinal relevante
-   ↓
-pesquisa de mídia
-   ↓
-artigos candidatos
-   ↓
-entity resolution
-   ↓
-contexto
-   ↓
-revisão
-
-Dessa forma, mídia adversa funcionará como enriquecimento investigativo, não como mecanismo automático de classificação.
-
-11. APIs pagas de baixo custo
-
-O projeto manterá aberta a possibilidade de incorporar uma API paga quando houver ganho concreto.
-
-O orçamento experimental será deliberadamente limitado.
-
-Uma nova API somente será adicionada quando pudermos formular uma hipótese do tipo:
-
-A utilização desta fonte deve aumentar a cobertura ou reduzir determinada falha observada.
-
-Depois será possível testar se isso realmente ocorreu.
-
-Uma ferramenta paga que não melhorar o resultado será documentada como tal.
-
-Isso também faz parte da avaliação do stack.
-
-12. Hierarquia das fontes
-
-Nem todas as fontes terão o mesmo peso.
-
-Uma hierarquia conceitual será utilizada:
-
-FONTE OFICIAL
-     │
-     ▼
-BASE ESPECIALIZADA / AGREGADOR
-     │
-     ▼
-REGISTRO CORPORATIVO
-     │
-     ▼
-MÍDIA / CONTEXTO ABERTO
-     │
-     ▼
-INFERÊNCIA ANALÍTICA
-
-Quando duas fontes divergirem, o projeto deverá preservar a divergência em vez de simplesmente escolher silenciosamente uma delas.
-
-13. Proveniência dos dados
-
-Todo registro externo relevante deverá preservar informações sobre sua origem.
-
-Campos conceituais:
-
-source_name
-source_dataset
-source_record_id
-source_type
-retrieved_at
-source_last_updated
-source_version
-
-Quando necessário, também poderão ser armazenados:
-
-request_parameters
-matching_algorithm
-matching_threshold
-raw_record_hash
-
-O objetivo será permitir responder:
-
-De onde veio esta informação?
-
-Quando ela foi coletada?
-
-Qual registro original a originou?
-
-Qual transformação foi aplicada?
-
-14. Preservação do dado original
-
-Sempre que possível, haverá separação entre:
-
-RAW
-↓
-PROCESSADO
-↓
-ANALÍTICO
-data/raw/
-
-Contém o dado original obtido da fonte.
-
-Não será versionado publicamente quando houver risco de exposição ou volume desnecessário.
-
-data/processed/
-
-Contém dados já:
-
-limpos;
-normalizados;
-selecionados;
-pseudonimizados quando necessário.
-
-Somente arquivos adequados à publicação poderão entrar no repositório.
-
-data/synthetic/
-
-Contém entidades e transações artificiais criadas especificamente para os experimentos.
-
-Essa camada poderá ser integralmente reproduzível.
-
-15. Separação entre fonte e classificação
-
-Uma propriedade fundamental será evitar transformar a origem do registro em julgamento.
-
-Por exemplo:
-
-source = "PEP"
-
-não implica:
-
-risk = "alto"
-
-Da mesma forma:
-
-source = "mídia"
-
-não implica:
-
-evidence = "confirmed"
-
-O pipeline deverá preservar separadamente:
-
+```text
 fonte
-categoria
-match
-confiança
+  ↓
+dado observado
+  ↓
+match ou relacionamento
+  ↓
+sinal
+  ↓
 contexto
-evidência
+  ↓
+priorização
+  ↓
+revisão humana
+  ↓
 decisão
+```
 
-16. Primeira fase operacional
+## 3.9 Limitações do escopo de dados
 
-Para controlar o escopo, a primeira implementação utilizará um conjunto reduzido de fontes.
+A utilização predominante de uma única fonte externa oficial impõe limitações importantes.
 
-Núcleo inicial
-OFAC
-OpenSanctions
-Portal da Transparência
-GLEIF
+Entre elas:
 
-Essas quatro camadas já permitem testar:
+- concentração do screening em uma fonte de sanções específica;
+- ausência de validação externa com múltiplas jurisdições;
+- cobertura incompleta de atributos para determinados tipos de entidade;
+- ausência, nesta versão, de dados reais de clientes e transações;
+- dependência de dados sintéticos para avaliar padrões relacionais e comportamentais;
+- impossibilidade de inferir desempenho operacional em ambiente produtivo apenas a partir dos benchmarks controlados.
+- benchmark de entity resolution construído a partir de diferentes representações pertencentes à própria OFAC, sem base independente de onboarding;
 
-ingestão de arquivos;
-consumo de APIs;
-normalização;
-entity resolution;
-screening;
-sanções;
-PEP;
-integridade;
-estruturas corporativas;
-relações no Neo4j.
-Expansão posterior
+Essas limitações são deliberadamente preservadas na interpretação dos resultados.
 
-Depois que o núcleo estiver validado, poderão ser incorporados:
+O objetivo do projeto não é demonstrar cobertura universal de KYC/AML, mas avaliar de forma transparente **como diferentes métodos acrescentam ou perdem informação ao longo do pipeline**.
 
-ONU
-mídia adversa
-outras fontes corporativas
-APIs adicionais
-GraphRAG
+## 3.10 Síntese da camada de dados
 
-Isso evita adicionar complexidade antes de validar o pipeline principal.
+O escopo final combina uma fonte externa oficial e dados experimentais controlados:
 
-17. Perguntas que as fontes deverão responder
-
-Ao final, será possível avaliar:
-
-Cobertura
-
-Quantas entidades relevantes cada fonte consegue recuperar?
-
-Qualidade de matching
-
-Quais fontes fornecem atributos suficientes para reduzir falsos positivos?
-
-Complementaridade
-
-Uma fonte encontra registros que outra não encontra?
-
-Estrutura relacional
-
-Quais bases acrescentam relacionamentos úteis ao grafo?
-
-Custo-benefício
-
-Uma API paga produz ganho mensurável em relação às alternativas gratuitas?
-
-Proveniência
-
-É possível rastrear cada resultado até sua origem?
-
-18. Limitações
-
-Nenhuma dessas fontes será tratada como completa.
-
-Entre as limitações esperadas estão:
-
-diferenças de cobertura geográfica;
-diferentes frequências de atualização;
-registros incompletos;
-aliases ausentes;
-inconsistências entre jurisdições;
-empresas sem LEI;
-dificuldade de entity resolution;
-falsos positivos;
-mídia descontextualizada.
-
-O objetivo não será ocultar essas limitações.
-
-Elas farão parte dos resultados do projeto.
-
-19. Critério para inclusão de novas fontes
-
-Antes de incluir uma nova API ou dataset, serão respondidas quatro perguntas:
-
-Qual problema ela resolve?
-Qual informação nova ela fornece?
-Como seu benefício será medido?
-O custo e a complexidade são proporcionais ao ganho?
-
-Se essas perguntas não tiverem uma resposta clara, a fonte não será adicionada.
-
-20. Resultado esperado desta camada
-
-Ao final da etapa de inteligência externa, o projeto deverá possuir registros padronizados capazes de alimentar as etapas seguintes:
-
-fontes externas
+```text
+OFAC SDN Advanced
         ↓
-dados normalizados
+ingestão e estruturação
         ↓
-entity resolution
+identidade e screening
         ↓
-screening
-        ↓
-entidades e relações
-        ↓
-Neo4j
+benchmark de matching
 
-A qualidade dessa camada será fundamental para todas as análises posteriores.
-
-Um grafo sofisticado construído sobre identidades incorretamente resolvidas apenas produziria uma representação sofisticada de relações erradas.
-
-Por isso, qualidade da fonte, proveniência e entity resolution serão tratados como componentes centrais do projeto, e não apenas como preparação de dados.
+Dados sintéticos
+        ↓
+rede e transações
+        ↓
+experimentos Neo4j / AML
+```
